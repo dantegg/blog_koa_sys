@@ -1,0 +1,22 @@
+{
+  "name": "new_koa",
+  "version": "1.0.0",
+  "description": "a new koa project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dantegg/new_koa.git"
+  },
+  "keywords": [
+    "koa2"
+  ],
+  "author": "dantegg",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dantegg/new_koa/issues"
+  },
+  "homepage": "https://github.com/dantegg/new_koa#readme"
+}

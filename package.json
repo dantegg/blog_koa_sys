@@ -18,5 +18,9 @@
   "bugs": {
     "url": "https://github.com/dantegg/new_koa/issues"
   },
-  "homepage": "https://github.com/dantegg/new_koa#readme"
+  "homepage": "https://github.com/dantegg/new_koa#readme",
+  "dependencies": {
+    "babel-plugin-transform-async-to-generator": "^6.16.0",
+    "koa": "^2.0.0"
+  }
 }

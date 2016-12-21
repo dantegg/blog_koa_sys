@@ -1,6 +1,8 @@
 /**
  * Created by dantegg on 2016/12/20.
  */
+'use strict'
+
 var Koa = require('koa')
 var app = new Koa()
 

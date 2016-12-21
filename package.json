@@ -22,5 +22,15 @@
   "dependencies": {
     "babel-plugin-transform-async-to-generator": "^6.16.0",
     "koa": "^2.0.0"
+  },
+  "devDependencies": {
+    "koa-bodyparser": "^3.2.0",
+    "koa-json": "^2.0.2",
+    "koa-logger": "^2.0.0",
+    "koa-mount": "^2.0.0",
+    "koa-router": "^7.0.1",
+    "koa-static": "^3.0.0",
+    "koa-views": "^5.2.0",
+    "runkoa": "^1.5.9"
   }
 }

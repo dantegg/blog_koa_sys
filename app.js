@@ -30,9 +30,9 @@ app.use(bodyparser())
 app.use(json())
 
 
-app.use(views(__dirname+'/views',{
-    extension:'html'
-}))
+// app.use(views(__dirname+'/views',{
+//     extension:'html'
+// }))
 app.use(router.routes(),router.allowedMethods())
 
 app.on('error',function (err,ctx) {
@@ -59,6 +59,8 @@ app.on('error',function (err,ctx) {
 // }
 
 
-app.listen(3000)
+app.listen(3000,function () {
+    console.log('app started,http://localhost:3000,ctrl-c to terminate')
+})
 
 module.exports = app

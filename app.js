@@ -36,7 +36,6 @@ const json = require('koa-json')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
 
-
 const devMiddlewareInstance = devMiddleware(compiler,{
     noInfo: true,
     watchOptions: {
@@ -60,7 +59,7 @@ app.env='development'
 app.use(logger())
 app.use(devMiddlewareInstance)
 app.use(hotMiddlewareInstance)
-mid
+
 app.on('error', function (err, ctx) {
     console.log('error occured:', err.stack)
 })
@@ -72,15 +71,14 @@ app.use(async (ctx,next)=>{
 })
 
 
-// app.use(mount('/static',require('koa-static')(__dirname+'/public')))
+app.use(mount('/static',require('koa-static')(__dirname+'/public')))
+app.use(bodyparser())
+app.use(json())
 
-// app.use(bodyparser())
-// app.use(json())
 
-
-// app.use(views(__dirname+'/views',{
-//     extension:'html'
-// }))
+app.use(views(__dirname+'/views',{
+    extension:'html'
+}))
 app.use(router.routes(),router.allowedMethods())
 
 app.on('error',function (err,ctx) {

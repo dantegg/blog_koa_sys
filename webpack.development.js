@@ -15,10 +15,10 @@ module.exports = {
     // For old browsers
     'eventsource-polyfill',
     'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
-    './client/index.js'
+    './client/app.js'
   ],
   output: {
-    path: path.join(__dirname, '/static'),
+    path: path.join(__dirname, '/dist'),
     filename: '[name].js',
     chunkFilename: '[id].chunk.js',
     publicPath: '/build/'

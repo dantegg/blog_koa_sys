@@ -5,8 +5,8 @@ var path = require('path')
 var rucksack = require('rucksack-css')
 var autoprefixer = require('autoprefixer')
 var includes = [
-  path.resolve(__dirname, 'app'),
-  path.resolve(__dirname, 'platforms')
+  path.resolve(__dirname, 'client'),
+  // path.resolve(__dirname, 'platforms')
 ]
 
 module.exports = {
@@ -15,10 +15,10 @@ module.exports = {
     // For old browsers
     'eventsource-polyfill',
     'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
-    './platforms/browser/index.js'
+    './client/index.js'
   ],
   output: {
-    path: path.join(__dirname, '/public/static'),
+    path: path.join(__dirname, '/static'),
     filename: '[name].js',
     chunkFilename: '[id].chunk.js',
     publicPath: '/build/'
@@ -37,10 +37,10 @@ module.exports = {
       {
         test: /\.jsx|.js$/,
         exclude: /node_modules/,
-        include: includes,
+        // include: includes,
         loader: 'babel-loader',
         query: {
-          presets: ['react-hmre'],
+          presets: ['react','es2015'],
           plugins: [
             ["inline-replace-variables", {
               "__SERVER__": false

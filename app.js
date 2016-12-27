@@ -28,6 +28,8 @@ const webpack = require('webpack')
 const KWM = require('koa-webpack-middleware')
 const devMiddleware = KWM.devMiddleware
 const hotMiddleware = KWM.hotMiddleware
+const webpackConfig = require('./webpack.development')
+const compiler = webpack(webpackConfig)
 const views = require('koa-views')
 const mount = require('koa-mount')
 const json = require('koa-json')
@@ -35,10 +37,33 @@ const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
 
 
+const devMiddlewareInstance = devMiddleware(compiler,{
+    noInfo: true,
+    watchOptions: {
+        aggregateTimeout: 300,
+        poll: false
+    },
+    publicPath: '/build/',
+    stats: {
+        colors: true
+    }
+})
+
+const hotMiddlewareInstance = hotMiddleware(compiler, {
+    log: console.log,
+    path: '/__webpack_hmr',
+    heartbeat: 10 * 1000
+})
+
 const router = require('./routes').router
-
+app.env='development'
 app.use(logger())
-
+app.use(devMiddlewareInstance)
+app.use(hotMiddlewareInstance)
+mid
+app.on('error', function (err, ctx) {
+    console.log('error occured:', err.stack)
+})
 app.use(async (ctx,next)=>{
     const start = new Date()
     await next()
@@ -47,10 +72,10 @@ app.use(async (ctx,next)=>{
 })
 
 
-app.use(mount('/static',require('koa-static')(__dirname+'/public')))
+// app.use(mount('/static',require('koa-static')(__dirname+'/public')))
 
-app.use(bodyparser())
-app.use(json())
+// app.use(bodyparser())
+// app.use(json())
 
 
 // app.use(views(__dirname+'/views',{

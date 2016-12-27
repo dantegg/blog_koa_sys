@@ -22,18 +22,18 @@ class MongoBaseModel{
     }
 
     get(id){
-        return await this.collection.findOne({_id:this.toId(id)})
+        return this.collection.findOne({_id:this.toId(id)})
     }
 
     update(id,obj){
-        return await this.collection.updateOne({_id:this.toId(id)},obj)
+        return this.collection.updateOne({_id:this.toId(id)},obj)
     }
 
     updatePart(id,part){
-        return await this.collection.updateOne({_id:this.toId(id)},{$set:part})
+        return this.collection.updateOne({_id:this.toId(id)},{$set:part})
     }
     del(id){
-        return await this.collection.deleteOne({_id:this.toId(id)})
+        return this.collection.deleteOne({_id:this.toId(id)})
     }
 
     deleteMany(query={}){

@@ -24,6 +24,11 @@
     "koa": "^2.0.0"
   },
   "devDependencies": {
+    "asset-require-hook": "^1.0.2",
+    "babel-core": "^6.21.0",
+    "babel-plugin-inline-replace-variables": "^1.1.2",
+    "babel-plugin-transform-require-ignore": "0.0.2",
+    "babel-polyfill": "^6.20.0",
     "koa-bodyparser": "^3.2.0",
     "koa-json": "^2.0.2",
     "koa-logger": "^2.0.0",

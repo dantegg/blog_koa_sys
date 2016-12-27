@@ -2,9 +2,32 @@
  * Created by dantegg on 2016/12/20.
  */
 'use strict'
+process.env.NODE_ENV = 'development'
+console.log('waiting for webpacking')
+// require('babel-polyfill')
+require('babel-core/register')({
+    plugins:[
+        ['babel-plugin-transform-require-ignore',{
+        extensions:['.less','.css']
+        }],
+        ['inline-replace-variables',{
+        __SERVER__:true
+        }]
+    ]
+})
+
+require('asset-require-hook')({
+    extensions:['jpg','jpeg','png','gif','svg','tif','tiff','webp'],
+    name:'/build/[name].[ext]',
+    limit:1000
+})
 
 const Koa = require('koa')
 const app = new Koa()
+const webpack = require('webpack')
+const KWM = require('koa-webpack-middleware')
+const devMiddleware = KWM.devMiddleware
+const hotMiddleware = KWM.hotMiddleware
 const views = require('koa-views')
 const mount = require('koa-mount')
 const json = require('koa-json')

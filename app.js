@@ -57,8 +57,8 @@ const hotMiddlewareInstance = hotMiddleware(compiler, {
 const router = require('./routes').router
 app.env='development'
 app.use(logger())
-app.use(devMiddlewareInstance)
-app.use(hotMiddlewareInstance)
+//app.use(devMiddlewareInstance)
+//app.use(hotMiddlewareInstance)
 
 app.on('error', function (err, ctx) {
     console.log('error occured:', err.stack)
@@ -76,9 +76,9 @@ app.use(bodyparser())
 app.use(json())
 
 
-app.use(views(__dirname+'/views',{
-    extension:'html'
-}))
+// app.use(views(__dirname+'/views',{
+//     extension:'html'
+// }))
 app.use(router.routes(),router.allowedMethods())
 
 app.on('error',function (err,ctx) {

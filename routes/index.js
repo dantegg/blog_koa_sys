@@ -7,6 +7,7 @@ exports.router = router
 
 router.get('/',async(ctx)=>{
     ctx.body = 'init koa'
+    //console.log(ctx.body)
     const isLogin = false
     await ctx.render(isLogin?'home':'welcome')
 })

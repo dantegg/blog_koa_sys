@@ -21,6 +21,7 @@ router.get('/',async(ctx)=>{
     </body>
   </html>
 `
+    console.log('ctx.path',path.resolve(__dirname, '../static'))
     //console.log(ctx.body)
     //await ctx.render(isLogin?'home':'welcome')
     await send(ctx,ctx.path, { root: path.resolve(__dirname, './static') })

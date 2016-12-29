@@ -1,5 +1,4 @@
-process.env.NODE_ENV = 'development'
-
+var env = process.env.NODE_ENV
 var webpack = require('webpack')
 var path = require('path')
 var rucksack = require('rucksack-css')
@@ -14,33 +13,39 @@ module.exports = {
   entry: [
     // For old browsers
     'eventsource-polyfill',
-    'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
+      'webpack-hot-middleware/client?reload=true',
+    //'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
     './client/app.js'
   ],
   output: {
-    path: path.join(__dirname, '/dist'),
+    path: path.join(__dirname, '/public/static'),
     filename: '[name].js',
     chunkFilename: '[id].chunk.js',
-    publicPath: '/build/'
+    publicPath: '/zzz/'
   },
-  resolve: {
-    modulesDirectories: ['node_modules', path.join(__dirname, '/node_modules')],
-    extensions: ['', '.js', '.jsx']
-  },
-
-  resolveLoader: {
-    modulesDirectories: ['node_modules', path.join(__dirname, '/node_modules')]
-  },
+  // resolve: {
+  //   modulesDirectories: ['node_modules', path.join(__dirname, '/node_modules')],
+  //   extensions: ['', '.js', '.jsx']
+  // },
+  //
+  // resolveLoader: {
+  //   modulesDirectories: ['node_modules', path.join(__dirname, '/node_modules')]
+  // },
 
   module: {
     loaders: [
       {
-        test: /\.jsx|.js$/,
+        test: /\.js$/,
         exclude: /node_modules/,
-        // include: includes,
+        include: includes,
         loader: 'babel-loader',
         query: {
           presets: ['react','es2015'],
+            // env: {
+            //     'development': {
+            //         'presets': ['react-hmre']
+            //     }
+            // }
           plugins: [
             ["inline-replace-variables", {
               "__SERVER__": false
@@ -65,16 +70,20 @@ module.exports = {
     ]
   },
 
-  postcss: [
-    rucksack(),
-    autoprefixer({
-      browsers: ['last 2 versions', 'Firefox ESR', '> 1%', 'ie >= 8']
-    })
-  ],
+  // postcss: [
+  //   rucksack(),
+  //   autoprefixer({
+  //     browsers: ['last 2 versions', 'Firefox ESR', '> 1%', 'ie >= 8']
+  //   })
+  // ],
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin('common', 'common.js'),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+      new webpack.DefinePlugin({
+          'process.env.NODE_ENV': JSON.stringify(env)
+      }),
+    //new webpack.optimize.CommonsChunkPlugin('common', 'common.js'),
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+      new webpack.NoErrorsPlugin()
   ]
 }
 

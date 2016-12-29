@@ -17,6 +17,6 @@ import ReactDOM from 'react-dom'
 
 
 ReactDOM.render(
-    <div>123hahaha</div>,
+    <div>test webpack!!!!</div>,
     document.getElementById('root')
 )

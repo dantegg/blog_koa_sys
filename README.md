@@ -4,3 +4,4 @@
  https://github.com/wssgcg1213/koa2-react-isomorphic-boilerplate
 
  https://github.com/princeV/koa2-react-redux-webpack-boilerplate
+ https://github.com/chikara-chan/react-isomorphic-boilerplate

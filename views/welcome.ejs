@@ -6,7 +6,10 @@
 </head>
 <body>
 this is welcome page
-<div id="root"></div>
+<div id="root"><%- app %></div>
+<script>
+    window.REDUX_STATE = <%- JSON.stringify(state) %>
+</script>
 <script src="./zzz/main.js" charset="utf-8"></script>
 </body>
 </html>

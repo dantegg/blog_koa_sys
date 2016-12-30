@@ -13,8 +13,8 @@ module.exports = {
   entry: [
     // For old browsers
     'eventsource-polyfill',
-      'webpack-hot-middleware/client?reload=true',
-    //'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
+      //'webpack-hot-middleware/client?reload=true',
+      'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
     './client/app.js'
   ],
   output: {

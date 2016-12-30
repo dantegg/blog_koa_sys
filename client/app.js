@@ -4,10 +4,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 // import routes from '../../app/routes'
-// import { Provider } from 'react-redux'
-//import configureStore from '../../app/store/configureStore'
+import Test from './component/test'
+import { Provider } from 'react-redux'
+import configureStore from './store/configureStore'
 
-//const store = configureStore(window.__REDUX_STATE__)
+const store = configureStore(window.__REDUX_STATE__)
 // ReactDOM.render(
 // <Provider store={store}>
 //     {routes}
@@ -17,6 +18,8 @@ import ReactDOM from 'react-dom'
 
 
 ReactDOM.render(
-    <div>test webpack!!!!</div>,
+    <Provider store={store}>
+       <Test/>
+    </Provider>,
     document.getElementById('root')
 )

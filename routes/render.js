@@ -5,7 +5,7 @@ import React from 'react'
 import { RouterContext } from 'react-router'
 import { renderToString } from 'react-dom/server'
 import { Provider } from 'react-redux'
-import Test from '../client/component/test'
+import Head from '../client/component/head'
 import configureStore from '../client/store/configureStore'
 const store = configureStore()
 
@@ -32,7 +32,7 @@ export default async(ctx,next)=>{
     await ctx.render(isLogin?'home':'welcome',{
         state: store.getState(),
         app: renderToString(<Provider store={store}>
-            <Test ttt={'123456789090'}/>
+            <Head />
         </Provider>)
     })
 }

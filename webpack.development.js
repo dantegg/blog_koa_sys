@@ -40,7 +40,7 @@ module.exports = {
         include: includes,
         loader: 'babel-loader',
         query: {
-          presets: ['react','es2015'],
+          presets: ['react','es2015','react-hmre'],
             // env: {
             //     'development': {
             //         'presets': ['react-hmre']

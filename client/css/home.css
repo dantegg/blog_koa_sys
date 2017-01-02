@@ -1,0 +1,12 @@
+body{
+    margin:0px;
+}
+
+
+.home-head-logo,.home-head-login{
+    min-height: 25px;
+    color:#108ee9;
+    border-bottom:1px solid #dedede;
+    padding:20px;
+    font-size:25px
+}

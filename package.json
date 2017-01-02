@@ -24,6 +24,7 @@
     "koa": "^2.0.0"
   },
   "devDependencies": {
+    "antd": "^2.6.0",
     "asset-require-hook": "^1.0.2",
     "autoprefixer": "^6.6.0",
     "babel-core": "^6.21.0",
@@ -39,6 +40,7 @@
     "babel-preset-stage-0": "^6.16.0",
     "chokidar": "^1.6.1",
     "css-loader": "^0.26.1",
+    "css-modules-require-hook": "^4.0.5",
     "ejs": "^2.5.5",
     "eventsource-polyfill": "^0.9.6",
     "file-loader": "^0.9.0",
@@ -58,6 +60,7 @@
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
     "mongodb": "^2.2.16",
+    "node-css": "^0.1.0",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "react-redux": "^5.0.1",

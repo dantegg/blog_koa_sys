@@ -7,14 +7,37 @@ console.log('waiting for webpacking')
 require('babel-polyfill')
 require('babel-core/register')({
     presets: ['es2015', 'react', 'stage-0'],
-    plugins: ['add-module-exports']
+    plugins: ['add-module-exports',
+        ['babel-plugin-transform-require-ignore', {
+            extensions: ['.less', '.css']
+        }]]
 })
-
-// require('asset-require-hook')({
-//     extensions:['jpg','jpeg','png','gif','svg','tif','tiff','webp'],
-//     name:'/build/[name].[ext]',
-//     limit:1000
+// require('babel-core/register')({
+//     plugins: [
+//         ['babel-plugin-transform-require-ignore', {
+//             extensions: ['.less', '.css']
+//         }],
+//         ['inline-replace-variables', {
+//             __SERVER__: true
+//         }]
+//     ]
 // })
+// require('css-modules-require-hook')({
+//     extensions: ['.css'],
+//     preprocessCss: (data, filename) =>
+//         require('node-css').renderSync({
+//             data,
+//             file: filename
+//         }).css,
+//     camelCase: true,
+//     generateScopedName: '[name]__[local]__[hash:base64:8]'
+// })
+
+require('asset-require-hook')({
+    extensions:['jpg','jpeg','png','gif','svg','tif','tiff','webp','css'],
+    name:'/build/[name].[ext]',
+    limit:1000
+})
 const path = require('path')
 const Koa = require('koa')
 const app = new Koa()
@@ -30,7 +53,6 @@ const mount = require('koa-mount')
 const json = require('koa-json')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
-
 const devMiddlewareInstance = devMiddleware(compiler,{
     noInfo: true,
     // watchOptions: {
@@ -77,9 +99,8 @@ app.use(convert(hotMiddlewareInstance))
 app.use(views(__dirname+'/views',{
     extension:'ejs'
 }))
-
 app.use(router)
-// app.use(router.routes(),router.allowedMethods())
+//app.use(router.routes(),router.allowedMethods())
 
 app.on('error',function (err,ctx) {
     console.log(err)

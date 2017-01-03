@@ -8,10 +8,5 @@ body{
     color:#108ee9;
     border-bottom:1px solid #dedede;
     padding:20px;
-    font-size:25px;
-    text-align:right;
-}
-
-.home-head-logo{
-    text-align:left;
+    font-size:25px
 }

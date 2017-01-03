@@ -5,12 +5,25 @@
 process.env.NODE_ENV = 'development'
 console.log('waiting for webpacking')
 require('babel-polyfill')
-require('babel-core/register')({
+require('babel-register')({
     presets: ['es2015', 'react', 'stage-0'],
-    plugins: ['add-module-exports',
-        ['babel-plugin-transform-require-ignore', {
-            extensions: ['.less', '.css']
-        }]]
+    plugins: ['add-module-exports']
+    // plugins: ['add-module-exports',
+    //     ['babel-plugin-transform-require-ignore', {
+    //         extensions: ['.less', '.css']
+    //     }]]
+})
+// Css require hook
+require('css-modules-require-hook')({
+    extensions: ['.css'],
+    preprocessCss: (data, filename) =>
+        require('node-sass').renderSync({
+            data,
+            file: filename
+        }).css,
+    camelCase: true,
+    //generateScopedName: '[local]'
+    generateScopedName: '[name]__[local]__[hash:base64:8]'
 })
 // require('babel-core/register')({
 //     plugins: [
@@ -34,10 +47,11 @@ require('babel-core/register')({
 // })
 
 require('asset-require-hook')({
-    extensions:['jpg','jpeg','png','gif','svg','tif','tiff','webp','css'],
+    extensions:['jpg','jpeg','png','gif','svg','tif','tiff','webp'],
     name:'/build/[name].[ext]',
     limit:1000
 })
+const fs = require('fs')
 const path = require('path')
 const Koa = require('koa')
 const app = new Koa()
@@ -94,11 +108,8 @@ app.use(async (ctx,next)=>{
 app.use(bodyparser())
 app.use(json())
 app.use(mount('/static',require('koa-static')(__dirname+'/public')))
-app.use(convert(devMiddlewareInstance))
-app.use(convert(hotMiddlewareInstance))
-app.use(views(__dirname+'/views',{
-    extension:'ejs'
-}))
+
+app.use(views(__dirname+'/views/dev',{map: {html: 'ejs'}}))
 app.use(router)
 //app.use(router.routes(),router.allowedMethods())
 
@@ -106,41 +117,29 @@ app.on('error',function (err,ctx) {
     console.log(err)
     logger.error('server error',err,ctx)
 })
-// app.use(async function(ctx,next) {
-//     var startTime = Date.now()
-//     console.log(1)
-//     await next()
-//     console.log(4)
-// })
-//
-// app.use(async function(ctx) {
-//     console.log(2)
-//     var value = await foo(1)
-//     ctx.body = value
-//     console.log(3)
-// })
-//
-// async function foo(x) {
-//     return await Promise.resolve(x+1)
-// }
-// var watcher = chokidar.watch([
-//     path.join(__dirname, './client'),
-//     //path.join(__dirname, '../platforms')
-// ])
+compiler.plugin('emit', (compilation, callback) => {
+    const assets = compilation.assets
+    let file, data
+
+    Object.keys(assets).forEach(key => {
+        if (key.match(/\.html$/)) {
+            console.log('sss',key)
+            file = path.resolve(__dirname, key)
+            console.log('file',file)
+            data = assets[key].source()
+            fs.writeFileSync(file, data)
+        }
+    })
+    callback()
+})
 
 
 
+app.use(convert(devMiddlewareInstance))
+app.use(convert(hotMiddlewareInstance))
 
 app.listen(3000,function () {
     console.log('app started,http://localhost:3000,ctrl-c to terminate')
-    // watcher.on('ready', function () {
-    //     watcher.on('all', function (e, p) {
-    //         console.log("Clearing module cache");
-    //         Object.keys(require.cache).forEach(function(id) {
-    //             if (/[\/\\](app|platforms)[\/\\]/.test(id)) delete require.cache[id];
-    //         });
-    //     })
-    // })
 })
 
 module.exports = app

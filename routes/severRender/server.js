@@ -26,15 +26,15 @@ export default async (ctx, next, renderProps) => {
     }
 
     await Promise.all(prefetchTasks)
-    await ctx.render(isLogin?'space':'home', {
+    await ctx.render('home', {
         //title: config.title,
         // dev: ctx.app.env === 'development',
         // reduxData: store.getState(),
         // app: renderToString(<Provider store={store}>
         //     <RouterContext {...renderProps} />
         // </Provider>)
-        state: store.getState(),
-        app: renderToString(<Provider store={store}>
+        reduxState: store.getState(),
+        root: renderToString(<Provider store={store}>
             <RouterContext {...renderProps} />
         </Provider>)
     })

@@ -8,10 +8,6 @@ require('babel-polyfill')
 require('babel-register')({
     presets: ['es2015', 'react', 'stage-0'],
     plugins: ['add-module-exports']
-    // plugins: ['add-module-exports',
-    //     ['babel-plugin-transform-require-ignore', {
-    //         extensions: ['.less', '.css']
-    //     }]]
 })
 // Css require hook
 require('css-modules-require-hook')({
@@ -25,26 +21,6 @@ require('css-modules-require-hook')({
     //generateScopedName: '[local]'
     generateScopedName: '[name]__[local]__[hash:base64:8]'
 })
-// require('babel-core/register')({
-//     plugins: [
-//         ['babel-plugin-transform-require-ignore', {
-//             extensions: ['.less', '.css']
-//         }],
-//         ['inline-replace-variables', {
-//             __SERVER__: true
-//         }]
-//     ]
-// })
-// require('css-modules-require-hook')({
-//     extensions: ['.css'],
-//     preprocessCss: (data, filename) =>
-//         require('node-css').renderSync({
-//             data,
-//             file: filename
-//         }).css,
-//     camelCase: true,
-//     generateScopedName: '[name]__[local]__[hash:base64:8]'
-// })
 
 require('asset-require-hook')({
     extensions:['jpg','jpeg','png','gif','svg','tif','tiff','webp'],
@@ -88,6 +64,22 @@ const hotMiddlewareInstance = hotMiddleware(compiler, {
     heartbeat: 10 * 1000
 })
 
+compiler.plugin('emit', (compilation, callback) => {
+    const assets = compilation.assets
+    let file, data
+
+    Object.keys(assets).forEach(key => {
+        if (key.match(/\.html$/)) {
+            console.log('sss',key)
+            file = path.resolve(__dirname, key)
+            console.log('file',file)
+            data = assets[key].source()
+            fs.writeFileSync(file, data)
+        }
+    })
+    callback()
+})
+
 
 app.env='development'
 app.use(logger())
@@ -117,21 +109,7 @@ app.on('error',function (err,ctx) {
     console.log(err)
     logger.error('server error',err,ctx)
 })
-compiler.plugin('emit', (compilation, callback) => {
-    const assets = compilation.assets
-    let file, data
 
-    Object.keys(assets).forEach(key => {
-        if (key.match(/\.html$/)) {
-            console.log('sss',key)
-            file = path.resolve(__dirname, key)
-            console.log('file',file)
-            data = assets[key].source()
-            fs.writeFileSync(file, data)
-        }
-    })
-    callback()
-})
 
 
 

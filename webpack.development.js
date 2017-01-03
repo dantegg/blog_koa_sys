@@ -52,11 +52,12 @@ module.exports = {
         //test: /\.css$/,
         // loader: 'style!css'
             test: /\.css$/,
-            loaders: [
-                'style',
-                'css?modules&camelCase&importLoaders=1&localIdentName=[name]__[local]__[hash:base64:8]',
-                'sass'
-            ]
+            loader: ExtractTextPlugin.extract('style', 'css?modules&camelCase&importLoaders=1&localIdentName=[hash:base64:8]')
+            // loaders: [
+            //     'style',
+            //     'css?modules&camelCase&importLoaders=1&localIdentName=[name]__[local]__[hash:base64:8]',
+            //     'sass'
+            // ]
         }, {
         test: /\.less$/,
         include: includes,
@@ -87,9 +88,9 @@ module.exports = {
   // ],
     resolve: {extensions: ['', '.js', '.json', '.css']},
   plugins: [
-      // new ExtractTextPlugin('/zzz/common.css', {
-      //     allChunks: true
-      // }),
+      new ExtractTextPlugin('common.css', {
+          allChunks: true
+      }),
       // new webpack.DefinePlugin({
       //     'process.env.NODE_ENV': JSON.stringify(env)
       // }),

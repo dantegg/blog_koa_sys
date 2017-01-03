@@ -2,10 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>home</title>
+    <title>welcome</title>
+    <link rel="shortcut icon" href="/static/favicon.ico">
 </head>
 <body>
-this is home page
-
+<div id="root"><%- app %></div>
+<script>
+    window.REDUX_STATE = <%- JSON.stringify(state) %>
+</script>
+<script src="./zzz/main.js" charset="utf-8"></script>
 </body>
 </html>

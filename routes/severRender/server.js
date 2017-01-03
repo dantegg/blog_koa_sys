@@ -26,7 +26,7 @@ export default async (ctx, next, renderProps) => {
     }
 
     await Promise.all(prefetchTasks)
-    await ctx.render(isLogin?'home':'welcome', {
+    await ctx.render(isLogin?'space':'home', {
         //title: config.title,
         // dev: ctx.app.env === 'development',
         // reduxData: store.getState(),

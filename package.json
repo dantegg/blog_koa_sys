@@ -52,6 +52,7 @@
     "isomorphic-style-loader": "^1.1.0",
     "json-loader": "^0.5.4",
     "koa-bodyparser": "^3.2.0",
+    "koa-compose": "^3.2.1",
     "koa-convert": "^1.2.0",
     "koa-json": "^2.0.2",
     "koa-logger": "^2.0.0",

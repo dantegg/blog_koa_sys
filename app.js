@@ -35,6 +35,7 @@ const webpack = require('webpack')
 const KWM = require('koa-webpack-middleware')
 const devMiddleware = KWM.devMiddleware
 const hotMiddleware = KWM.hotMiddleware
+//const middleware = require('./middlewares')
 const webpackConfig = require('./webpack.development')
 const compiler = webpack(webpackConfig)
 const views = require('koa-views')
@@ -102,6 +103,7 @@ app.use(json())
 app.use(mount('/static',require('koa-static')(__dirname+'/public')))
 
 app.use(views(__dirname+'/views/dev',{map: {html: 'ejs'}}))
+//app.use(middleware)
 app.use(router)
 //app.use(router.routes(),router.allowedMethods())
 

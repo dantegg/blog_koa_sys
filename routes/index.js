@@ -7,9 +7,6 @@ import Router from 'koa-router'
 
 //const router = new Router()
 
-
-
-
 export default async (ctx, next) => {
     // api server through koa-router
     if (ctx.path.match(/^\/api/)) {

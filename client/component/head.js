@@ -5,7 +5,6 @@ import React,{Component} from 'react'
 import {Row,Col,Button} from 'antd'
 import 'antd/dist/antd.css'
 import test from '../css/home.css'
-import {Link} from 'react-router'
 
 
 export default class Head extends Component{

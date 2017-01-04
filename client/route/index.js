@@ -14,3 +14,34 @@ export default (
         </Route>
     </Router>
 )
+
+
+// if (typeof require.ensure !== 'function') {
+//     require.ensure = function(dependencies, callback) {
+//         callback(require)
+//     }
+// }
+//
+// const routes = {
+//     childRoutes: [{
+//         path: '/',
+//         component: require('../component/home'),
+//         indexRoute: {
+//             getComponent(nextState, callback) {
+//                 require.ensure([], require => {
+//                     callback(null, require('../component/test'))
+//                 }, 'home')
+//             }
+//         },
+//         childRoutes: [{
+//             path: 'space',
+//             getComponent(nextState, callback) {
+//                 require.ensure([], require => {
+//                     callback(null, require('../component/space'))
+//                 }, 'space')
+//             }
+//         }]
+//     }]
+// }
+//
+// export default routes

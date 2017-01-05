@@ -55,7 +55,7 @@ class Login extends Component{
                                 )}
                             </FormItem>
                             <FormItem>
-                                <Button type="primary" htmlType="submit" style={{width:"100%"}}>
+                                <Button type="primary" onClick={()=>this.login()} style={{width:"100%"}}>
                                     Log in
                                 </Button>
                             </FormItem>

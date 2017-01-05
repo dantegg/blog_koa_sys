@@ -15,6 +15,7 @@ export default class Head extends Component{
         }
     }
     go2space(){
+        console.log('123')
         window.location.href='/space'
     }
     render(){

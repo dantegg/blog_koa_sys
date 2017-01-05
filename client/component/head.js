@@ -3,6 +3,7 @@
  */
 import React,{Component} from 'react'
 import {Row,Col,Button} from 'antd'
+import { browserHistory } from 'react-router'
 import 'antd/dist/antd.css'
 import test from '../css/home.css'
 
@@ -15,8 +16,9 @@ export default class Head extends Component{
         }
     }
     go2space(){
-        console.log('123')
-        window.location.href='/space'
+        //console.log('123')
+        browserHistory.push('/space')
+        //window.location.href='/space'
     }
     render(){
         return(

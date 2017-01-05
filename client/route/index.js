@@ -1,15 +1,20 @@
 /**
  * Created by dantegg on 2017/1/1.
  */
-import Home from '../container/home'
+import App from '../container/app'
 import React from 'react'
+import Login from '../component/login'
+import Home from '../component/home'
 import Space from '../component/space'
-import {Router,Route,browserHistory} from 'react-router'
+import {Router,Route,browserHistory,IndexRedirect} from 'react-router'
 
 
 export default (
     <Router history={browserHistory}>
-        <Route path="/" component={Home} >
+        <Route path="/" component={App} >
+            <IndexRedirect to="/home" />
+            <Route path="login" component={Login} />
+            <Route path="home" component={Home} />
             <Route path="space" component={Space} />
         </Route>
     </Router>

@@ -11,3 +11,13 @@
 .home-head-logo{
     text-align:left;
 }
+
+.home-slogan{
+    font-size:1rem;
+    font-style: italic;
+    width:300px;
+    margin:0 auto;
+    position: relative;
+    top:40%;
+    height:100px;
+}

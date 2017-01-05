@@ -1,9 +1,10 @@
 /**
- * Created by dantegg on 17-1-4.
+ * Created by dantegg on 2017/1/2.
  */
 import React,{Component} from 'react'
 
-export default class Test extends Component{
+
+export default class Home extends Component{
     constructor(props){
         super(props)
         this.state={
@@ -12,9 +13,9 @@ export default class Test extends Component{
     }
     render(){
         return(
-            <div>
-                <div>
-                    test
+            <div style={{height:'100%'}}>
+                <div style={{height:'90%'}}>
+                    {this.props.children}
                 </div>
             </div>
         )

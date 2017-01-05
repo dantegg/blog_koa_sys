@@ -3,7 +3,7 @@
  */
 import {bindActionCreators} from  'redux'
 import {connect} from 'react-redux'
-import * as testActions from '../actions/welcome'
+import * as testActions from '../actions/home'
 import Head from '../component/head'
 
 function mapStateToProps(state) {

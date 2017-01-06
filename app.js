@@ -31,6 +31,7 @@ const fs = require('fs')
 const path = require('path')
 const Koa = require('koa')
 const app = new Koa()
+const session = require('koa-session')
 const webpack = require('webpack')
 const KWM = require('koa-webpack-middleware')
 const devMiddleware = KWM.devMiddleware
@@ -81,7 +82,7 @@ compiler.plugin('emit', (compilation, callback) => {
     callback()
 })
 
-
+app.keys=['blog20170101']
 app.env='development'
 app.use(logger())
 
@@ -103,6 +104,7 @@ app.use(json())
 app.use(mount('/static',require('koa-static')(__dirname+'/public')))
 
 app.use(views(__dirname+'/views/dev',{map: {html: 'ejs'}}))
+app.use(convert(session(app)))
 //app.use(middleware)
 app.use(router)
 //app.use(router.routes(),router.allowedMethods())

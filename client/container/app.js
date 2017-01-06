@@ -8,7 +8,8 @@ import Home from '../component/app'
 
 function mapStateToProps(state) {
     return{
-        welcomeInfo:state.welcomeInfo
+        welcomeInfo:state.welcomeInfo,
+        isLogin:state.isLogin
     }
 }
 

@@ -1,10 +1,35 @@
 /**
  * Created by dantegg on 16-12-29.
  */
+
+const models = require('../models')
 const router = require('koa-router')()
 const path = require('path')
-const send = require('koa-send')
 router.prefix('/api')
+
+router.post('/login',async(ctx)=>{
+    const body = ctx.request.body
+    const user = await models.user.getByEmail(body.email)
+    if(!user){
+        ctx.redirect('/?err=error')
+    }
+    if(body.password !== user.password){
+        ctx.redirect('/?err=error')
+        return
+    }
+    ctx.session.userId = user._id
+})
+
+router.get('/logout',async(ctx)=>{
+    ctx.session = null
+    ctx.redirect('/')
+})
+
+router.get('/user',async(ctx)=>{
+    const userId = ctx.session.userId
+    const user = await models.user.get(userId)
+    ctx.body = user ||{}
+})
 
 router.get('/session/get',async(ctx)=>{
     ctx.body = ctx.session

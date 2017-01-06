@@ -3,9 +3,9 @@
  */
 const MongoBaseModel = require('./mongobase')
 
-
 class UserModel extends MongoBaseModel{
     init(collection){
+        console.log('collection',collection)
         this.collection = collection
         this.collection.createIndex({email:1},{unique:true}).then()
     }
@@ -17,8 +17,9 @@ class UserModel extends MongoBaseModel{
     // }
 
     getByEmail(email){
+        console.log('email',this)
         return this.collection.findOne({email:email})
     }
 }
 
-module.exports = UserModel
+export default UserModel

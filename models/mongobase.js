@@ -53,4 +53,4 @@ class MongoBaseModel{
 
 }
 
-module.exports = MongoBaseModel
+export default MongoBaseModel

@@ -10,6 +10,7 @@ import routes from './route'
 import { Provider } from 'react-redux'
 import configureStore from './store/configureStore'
 const store = configureStore(window.REDUX_STATE)
+//console.log('window state',window.REDUX_STATE)
 // ReactDOM.render(
 // <Provider store={store}>
 //     {Route}
@@ -19,6 +20,7 @@ const store = configureStore(window.REDUX_STATE)
 
 
 match({history: browserHistory, routes}, (error, redirectLocation, renderProps) => {
+    //console.log('store',store)
     render(
         <Provider store={store}>
             <Router {...renderProps}/>

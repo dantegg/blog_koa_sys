@@ -4,8 +4,8 @@
 import App from '../container/app'
 import React from 'react'
 import Login from '../component/login'
-import Home from '../component/home'
-import Space from '../component/space'
+import Home from '../container/home'
+import Space from '../container/space'
 import {Router,Route,browserHistory,IndexRedirect} from 'react-router'
 
 

@@ -7,6 +7,16 @@ import { browserHistory } from 'react-router'
 import Head from './head'
 const FormItem = Form.Item;
 
+const FETCH_POST = {
+    method:'post',
+    //body:paydata,
+    credentials: 'same-origin',
+    headers:{
+        'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8',
+        'Accept': 'application/json, text/javascript,*/*;q=0.01'
+    },
+}
+
 class Login extends Component{
     constructor(props){
         super(props)
@@ -17,8 +27,15 @@ class Login extends Component{
 
     //登录按钮点击事件
     login(){
-        console.log('login')
-        browserHistory.push('/space')
+        //console.log('login')
+        let userName = this.props.form.getFieldValue('username')
+        let passWord = this.props.form.getFieldValue('password')
+        console.log('username',userName)
+        console.log('password',passWord)
+        let fetchData = FETCH_POST
+        fetchData.body = `email=${userName}&password=${passWord}`
+        fetch('/api/login',fetchData)
+        //browserHistory.push('/space')
     }
 
     handleSubmit(e) {
@@ -41,7 +58,7 @@ class Login extends Component{
                     <div style={{marginTop:'20px'}}>
                         <Form onSubmit={this.handleSubmit} className="login-form">
                             <FormItem>
-                                {getFieldDecorator('userName', {
+                                {getFieldDecorator('username', {
                                     rules: [{ required: true, message: 'Please input your username!' }],
                                 })(
                                     <Input addonBefore={<Icon type="user" />} placeholder="Username" />

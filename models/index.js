@@ -6,7 +6,8 @@ const UserModel = require('./user')
 
 exports.user = new UserModel()
 
-MongoClient.connect('mongodb://localhost/blogsys')
+MongoClient.connect('mongodb://localhost/easysns')
 .then(db=>{
+    //console.log('db',db.collection('user'))
     exports.user.init(db.collection('user'))
 })

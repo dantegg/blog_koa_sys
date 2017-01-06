@@ -13,7 +13,7 @@ export default class Test extends Component{
         }
     }
     render(){
-        //console.log('this',this.props.path)
+        console.log('home',this.props)
         return(
             <div style={{height:'100%'}}>
                 <Head currentPath={this.props.location.pathname}/>

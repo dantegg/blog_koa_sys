@@ -12,6 +12,7 @@ export default class Home extends Component{
         }
     }
     render(){
+        //console.log('zzz',this.props)
         return(
             <div style={{height:'100%'}}>
                 <div style={{height:'90%'}}>

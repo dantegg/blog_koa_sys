@@ -16,6 +16,10 @@ export default class Head extends Component{
         }
     }
 
+    componentDidMount(){
+        //console.log('did mount',this)
+    }
+
     logoClick(){
         browserHistory.push('/')
     }
@@ -34,7 +38,7 @@ export default class Head extends Component{
     }
 
     render(){
-        //console.log('this',this.props)
+        //console.log('this props',this.props)
         //let currentPath  =window.location.pathname
         let btnTxt = '登录'
         if(this.props.currentPath ==='/login'){

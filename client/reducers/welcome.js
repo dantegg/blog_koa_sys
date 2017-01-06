@@ -4,7 +4,16 @@
 import {WELCOME} from '../actions/home'
 
 
-export default function counter(state ={},action) {
+export function welcomeInfo(state ={},action) {
+    switch (action.type){
+        case WELCOME:
+            return state
+        default:
+            return state
+    }
+}
+
+export function isLogin(state ={},action) {
     switch (action.type){
         case WELCOME:
             return state

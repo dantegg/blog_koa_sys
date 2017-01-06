@@ -1,10 +1,10 @@
 /**
- * Created by dantegg on 2017/1/1.
+ * Created by dantegg on 2017/1/7.
  */
 import {bindActionCreators} from  'redux'
 import {connect} from 'react-redux'
 import * as testActions from '../actions/home'
-import Head from '../component/head'
+import Home from '../component/Home'
 
 function mapStateToProps(state) {
     return{
@@ -17,4 +17,4 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators(testActions,dispatch)
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Head)
+export default connect(mapStateToProps,mapDispatchToProps)(Home)

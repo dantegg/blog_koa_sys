@@ -30,7 +30,8 @@ export default async(ctx,next)=>{
         if (redirectLocation) {
             ctx.redirect(redirectLocation.pathname + redirectLocation.search)
         } else if (renderProps) {
-            //console.log('render props',renderProps)
+            // console.log('session',!!ctx.session.userId)
+            // console.log('render props',renderProps)
             await renderCtrl(ctx, next, renderProps)
         } else {
             await next()

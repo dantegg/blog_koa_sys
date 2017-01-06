@@ -6,11 +6,14 @@ import { RouterContext } from 'react-router'
 import { renderToString } from 'react-dom/server'
 import { Provider } from 'react-redux'
 import configureStore from '../../client/store/configureStore'
-const store = configureStore()
+
 
 export default async (ctx, next, renderProps) => {
     const route = renderProps.routes[renderProps.routes.length - 1]
-    let isLogin = false
+    //let isLogin = !!ctx.session.userId
+    let store = configureStore({
+        isLogin:!!ctx.session.userId
+    })
     let prefetchTasks = []
     //console.log('componet',renderProps.components.length)
     for (let component of renderProps.components) {
@@ -24,6 +27,7 @@ export default async (ctx, next, renderProps) => {
             }
         }
     }
+
 
     await Promise.all(prefetchTasks)
     await ctx.render('home', {

@@ -4,11 +4,11 @@
 import {combineReducers} from 'redux'
 //import counter from './counter'
 //import {red_color,green_color,blue_color} from './color'
-import welcomeInfo from './welcome'
+import {welcomeInfo,isLogin} from './welcome'
 
 
 const rootReducer = combineReducers({
-    welcomeInfo
+    welcomeInfo,isLogin
 })
 
 

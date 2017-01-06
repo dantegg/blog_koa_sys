@@ -4,7 +4,7 @@
 'use strict'
 process.env.NODE_ENV = 'development'
 console.log('waiting for webpacking')
-require('babel-polyfill')
+//require('babel-polyfill')
 require('babel-register')({
     presets: ['es2015', 'react', 'stage-0'],
     plugins: ['add-module-exports']

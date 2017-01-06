@@ -28,6 +28,7 @@ export default async(ctx,next)=>{
         //     _renderProps = renderProps
         // })
         if (redirectLocation) {
+            console.log('123',redirectLocation)
             ctx.redirect(redirectLocation.pathname + redirectLocation.search)
         } else if (renderProps) {
             // console.log('session',!!ctx.session.userId)

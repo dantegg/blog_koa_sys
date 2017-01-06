@@ -10,8 +10,12 @@ router.prefix('/api')
 router.post('/login',async(ctx)=>{
     const body = ctx.request.body
     const user = await models.user.getByEmail(body.email)
+    console.log("user",!user)
     if(!user){
-        ctx.redirect('/?err=error')
+        console.log("user",!user)
+        ctx.status = 301
+        ctx.redirect('/')
+        return
     }
     if(body.password !== user.password){
         ctx.redirect('/?err=error')

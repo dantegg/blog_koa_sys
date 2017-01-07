@@ -16,8 +16,22 @@
     font-size:1rem;
     font-style: italic;
     width:300px;
-    margin:0 auto;
-    position: relative;
-    top:40%;
+    margin:200px auto;
+    /*position: relative;*/
+    /*top:40%;*/
     height:100px;
+}
+
+
+.home-news{
+    font-size:1rem;
+    text-align:left;
+    width:600px;
+    margin:0 auto;
+
+}
+
+.home-news-item{
+    padding:10px;
+    border-bottom:1px solid #dedede;
 }

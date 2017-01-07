@@ -1,17 +1,22 @@
 /**
  * Created by dantegg on 2017/1/2.
  */
+const models = require('../../models')
+
 import React from 'react'
 import { RouterContext } from 'react-router'
 import { renderToString } from 'react-dom/server'
 import { Provider } from 'react-redux'
 import configureStore from '../../client/store/configureStore'
-
+const services = require('../../services')
 
 export default async (ctx, next, renderProps) => {
     const route = renderProps.routes[renderProps.routes.length - 1]
     //let isLogin = !!ctx.session.userId
+    //const news = await services.news.getNews()
+    //console.log('news========',news)
     let store = configureStore({
+        //welcomeInfo:news,
         isLogin:!!ctx.session.userId
     })
     let prefetchTasks = []
@@ -29,6 +34,31 @@ export default async (ctx, next, renderProps) => {
     }
 
 
+    if(renderProps.location.pathname === '/home'){
+        const news = await services.news.getNews()
+        //console.log('news========',news)
+        store = configureStore({
+            welcomeInfo:news,
+            isLogin:!!ctx.session.userId
+        })
+    }
+    //     let newsArray = []
+    //     await models.blog.findNews().toArray((err,items)=>{
+    //         console.log('22222223356666')
+    //
+    //         items.map(x=>{
+    //             newsArray.push({
+    //                 "title":x.title,
+    //                 "content":x.content,
+    //                 "createTime":x.createTime
+    //             })
+    //         })//console.log(items)
+    //
+    //     })
+    //     console.log('nnnnnnnnnnnnnnnnnnnnn')
+
+    // }
+
     await Promise.all(prefetchTasks)
     await ctx.render('home', {
         //title: config.title,
@@ -43,3 +73,5 @@ export default async (ctx, next, renderProps) => {
         </Provider>)
     })
 }
+
+

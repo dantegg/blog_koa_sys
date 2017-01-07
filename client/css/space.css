@@ -11,12 +11,25 @@
     text-align:center;
 }
 
+.space-editor-title{
+    font-size:1rem;
+    font-weight:bold;
+    width:800px;
+    margin:0 auto;
+    text-align:left;
+}
+
 .space-editor{
     width: 800px;
     margin:0 auto;
     height:600px;
     border:1px solid #dedede;
 }
+
+.space-editor>div{
+    height:100%
+}
+
 .space-post{
     width:800px;
     margin:20px auto;

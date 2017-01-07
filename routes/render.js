@@ -9,7 +9,6 @@ import { renderToString } from 'react-dom/server'
 import route from '../client/route'
 import renderCtrl from './severRender/server'
 
-
 function _match (location) {
     return new Promise((resolve, reject) => {
         match(location, (error, redirectLocation, renderProps) => {
@@ -28,11 +27,10 @@ export default async(ctx,next)=>{
         //     _renderProps = renderProps
         // })
         if (redirectLocation) {
-            console.log('123',redirectLocation)
+            //console.log('123',redirectLocation)
             ctx.redirect(redirectLocation.pathname + redirectLocation.search)
         } else if (renderProps) {
             // console.log('session',!!ctx.session.userId)
-            // console.log('render props',renderProps)
             await renderCtrl(ctx, next, renderProps)
         } else {
             await next()

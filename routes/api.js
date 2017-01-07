@@ -48,6 +48,22 @@ router.get('/user',async(ctx)=>{
     ctx.body = user ||{}
 })
 
+router.post('/postblog',async (ctx)=>{
+    const body = ctx.request.body
+    const blog = {
+        title:body.title,
+        content:body.content,
+        createTime:Date.now()
+    }
+    // let sss = await models.blog.findNews().toArray((err,items)=>{
+    //     console.log(items)
+    // })
+    // console.log(sss)
+    ctx.body = await models.blog.create(blog)
+})
+
+
+
 router.get('/session/get',async(ctx)=>{
     ctx.body = ctx.session
 })

@@ -17,7 +17,6 @@ class UserModel extends MongoBaseModel{
     // }
 
     getByEmail(email){
-        console.log('email',this)
         return this.collection.findOne({email:email})
     }
 }

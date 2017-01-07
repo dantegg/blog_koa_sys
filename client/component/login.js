@@ -9,11 +9,10 @@ const FormItem = Form.Item;
 
 const FETCH_POST = {
     method:'post',
-    //body:paydata,
-    credentials: 'same-origin',
+    credentials: 'include',
     headers:{
         'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8',
-        'Accept': 'application/json, text/javascript,*/*;q=0.01'
+        'Accept': 'application/json, text/plain,*/*;q=0.01'
     },
 }
 
@@ -34,7 +33,18 @@ class Login extends Component{
         console.log('password',passWord)
         let fetchData = FETCH_POST
         fetchData.body = `email=${userName}&password=${passWord}`
-        fetch('/api/login',fetchData)
+        fetch('/api/login',fetchData).then(res=>{
+            if(res.ok){
+                res.json().then(result=>{
+                    if(result.success){
+                        console.log('sss')
+                        //browserHistory.push('/space')
+                        window.location.href='/space'
+                    }
+                    console.log('login',result)
+                })
+            }
+        })
         //browserHistory.push('/space')
     }
 

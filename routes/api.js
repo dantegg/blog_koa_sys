@@ -1,7 +1,6 @@
 /**
  * Created by dantegg on 16-12-29.
  */
-
 const models = require('../models')
 const router = require('koa-router')()
 const path = require('path')
@@ -13,20 +12,34 @@ router.post('/login',async(ctx)=>{
     console.log("user",!user)
     if(!user){
         console.log("user",!user)
-        ctx.status = 301
-        ctx.redirect('/')
-        return
+        //ctx.status = 301
+        //ctx.redirect('/')
+        ctx.body={
+            success:false,
+            msg:'password or username is wrong'
+        }
+        //return
     }
     if(body.password !== user.password){
-        ctx.redirect('/?err=error')
-        return
+        ctx.body={
+            success:false,
+            msg:'password or username is wrong'
+        }
     }
     ctx.session.userId = user._id
+    ctx.body={
+        success:true,
+        msg:'login success'
+    }
+    //ctx.redirect('/space')
 })
 
 router.get('/logout',async(ctx)=>{
     ctx.session = null
-    ctx.redirect('/')
+    ctx.body={
+        "success":true,
+        "msg":"logout success"
+    }
 })
 
 router.get('/user',async(ctx)=>{

@@ -32,7 +32,8 @@ export default class Head extends Component{
 
     logoClick(){
         //console.log('e',e)
-        browserHistory.push('/')
+        //browserHistory.push('/')
+        window.location.href='/'
     }
 
     goCheck(){

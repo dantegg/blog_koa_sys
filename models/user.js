@@ -7,9 +7,8 @@ class UserModel extends MongoBaseModel{
     init(collection){
         //console.log('collection',collection)
         this.collection = collection
-
+        //console.log('size',this.collection.count().toNumber())
         this.collection.createIndex({email:1},{unique:true}).then()
-
     }
 
     // create(obj){
@@ -19,9 +18,8 @@ class UserModel extends MongoBaseModel{
     //         //return this.store.set(PREFIX_EMAIL_TO_ID+obj.email,id).then(()=>id)
     //     })
     // }
-
-    initUser(){
-        super.create({email:'scott',password:'123456'})
+    getUserCount(){
+        return this.collection.count()
     }
 
     getByEmail(email){

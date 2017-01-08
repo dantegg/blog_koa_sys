@@ -65,7 +65,7 @@ class Login extends Component{
 
     render(){
         const { getFieldDecorator } = this.props.form;
-        console.log('login',this.props)
+        //console.log('login',this.props)
         return(
             <div>
                 <Head currentPath={this.props.location.pathname}/>

@@ -42,7 +42,7 @@ class MongoBaseModel{
     }
 
     find(query={},sort={},limit=100){
-        console.log('sort',sort)
+        //console.log('sort',sort)
         return this.collection.find(query).sort(sort).limit(limit)
     }
     findBefore(before,limit=100){

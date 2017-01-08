@@ -10,4 +10,6 @@
 ### Start
 development mode  
 run `node run.js`  
-tes  
+
+###TODO  
+add user initialization

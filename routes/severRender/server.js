@@ -43,6 +43,12 @@ export default async (ctx, next, renderProps) => {
         })
     }
 
+    // if(renderProps.location.pathname === '/login'){
+    //     let count = await models.user.getUserCount()
+    //     console.log('count',count)
+    // }
+
+
     if(renderProps.location.pathname === '/manage'){
         let time = Date.now()
         //console.log('time',time)

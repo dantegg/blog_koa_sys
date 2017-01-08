@@ -85,7 +85,6 @@ compiler.plugin('emit', (compilation, callback) => {
 app.keys=['blog20170101']
 app.env='development'
 app.use(logger())
-
 const router = require('./routes')
 app.on('error', function (err, ctx) {
     console.log('error occured:', err.stack)

@@ -1,4 +1,4 @@
-## a blog system based on koa2+react isomorphic server render+redux(react-redux)+react-router
+this is a blog system based on koa2+react isomorphic server render+redux(react-redux)+react-router+mongodb
 ### reference
  * react koa isomorphic demo  
     https://github.com/princeV/koa2-react-redux-webpack-boilerplate  

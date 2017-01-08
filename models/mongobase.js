@@ -42,6 +42,7 @@ class MongoBaseModel{
     }
 
     find(query={},sort={},limit=100){
+        console.log('sort',sort)
         return this.collection.find(query).sort(sort).limit(limit)
     }
     findBefore(before,limit=100){
@@ -49,6 +50,11 @@ class MongoBaseModel{
     }
     findSince(since,limit=100){
         return this.find({_id:{$gt:this.toId(since)}},{_id:-1})     //升序查询
+    }
+
+    findByTime(before,limit=100){
+        console.log('time',before)
+        return this.find({createTime:{$lt:before}},{createTime:-1},limit)
     }
 
 }

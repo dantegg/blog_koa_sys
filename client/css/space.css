@@ -1,6 +1,5 @@
 .space-part{
     position:relative;
-    top:50px;
 }
 
 .space-title{
@@ -34,4 +33,11 @@
     width:800px;
     margin:20px auto;
     text-align:right;
+}
+
+.space-manage{
+    text-align: right;
+    marign-top:20px;
+    padding-right:30px;
+    padding-top:20px;
 }

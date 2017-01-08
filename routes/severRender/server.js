@@ -42,6 +42,19 @@ export default async (ctx, next, renderProps) => {
             isLogin:!!ctx.session.userId
         })
     }
+
+    if(renderProps.location.pathname === '/manage'){
+        let time = Date.now()
+        //console.log('time',time)
+        const news = await models.blog.findBlogs(time).toArray()
+        //console.log('news',news)
+        let blogs = await services.news.normalizedList(news)
+        //console.log('blogs',blogs)
+        store = configureStore({
+            welcomeInfo:blogs,
+            isLogin:!!ctx.session.userId
+        })
+    }
     //     let newsArray = []
     //     await models.blog.findNews().toArray((err,items)=>{
     //         console.log('22222223356666')

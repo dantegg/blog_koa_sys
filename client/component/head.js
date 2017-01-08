@@ -72,11 +72,18 @@ export default class Head extends Component{
         }
         let btnAction = null
 
-        if(this.props.currentPath === '/home') btnTxt = '登录',btnAction = this.go2login
-        if(this.props.currentPath === '/space') btnTxt = '退出',btnAction = this.logOut
-        if(this.props.currentPath === '/login') btnTxt = '登录',btnAction = this.go2login
+        switch (this.props.currentPath){
+            case '/home':
+                btnTxt = '登录',btnAction = this.go2login
+                break
+            case '/login':
+                btnTxt = '登录',btnAction = this.go2login
+                break
+            default:
+                btnTxt = '退出',btnAction = this.logOut
+        }
         return(
-            <Row style={{height:'10%'}}>
+            <Row style={{height:'80px'}}>
                 <Col xs={8} sm={8} md={8} lg={8} className={test.homeHeadLogo}>
                     <div onClick={()=>this.logoClick()}>Dantegg's world</div>
                 </Col>

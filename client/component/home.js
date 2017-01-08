@@ -49,7 +49,7 @@ export default class Test extends Component{
                                 {this.props.welcomeInfo.map(x=>{
                                     let newdate = new Date()
                                     newdate.setTime(x.createTime)
-                                    //console.log()
+                                    //console.log(newdate.toLocaleDateString())
                                     return(
                                         <div key={comp.props.welcomeInfo.indexOf(x)} className={homeStyle.homeNewsItem}>
                                             <div style={{width:'100%'}}>

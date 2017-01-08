@@ -3,9 +3,10 @@
  */
 import App from '../container/app'
 import React from 'react'
-import Login from '../component/login'
+import Login from '../container/login'
 import Home from '../container/home'
 import Space from '../container/space'
+import Manage from '../container/manage'
 import {Router,Route,browserHistory,IndexRedirect} from 'react-router'
 
 
@@ -16,6 +17,7 @@ export default (
             <Route path="login" component={Login} />
             <Route path="home" component={Home} />
             <Route path="space" component={Space} />
+            <Route path="manage" component={Manage}/>
         </Route>
     </Router>
 )

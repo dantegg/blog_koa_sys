@@ -4,8 +4,7 @@
 import React,{Component} from 'react'
 import {MarkdownEditor} from 'react-markdown-editor'
 import Head from './head'
-import {Button,Input} from 'antd'
-import {Editor} from 'react-draft-wysiwyg'
+import {Button,Input,Icon} from 'antd'
 import {browserHistory} from 'react-router'
 import spaceStyle from '../css/space.css'
 
@@ -34,8 +33,8 @@ export default class Space extends Component{
     }
 
     postBlog(){
-        console.log('ref',this.refs.title.refs.input.value)
-        console.log('ref',this.refs.editor.state.content)
+        //console.log('ref',this.refs.title.refs.input.value)
+        //console.log('ref',this.refs.editor.state.content)
         let title = this.refs.title.refs.input.value
         let content = this.refs.editor.state.content
         let fetchData = FETCH_POST
@@ -55,11 +54,16 @@ export default class Space extends Component{
 
     }
 
+    go2Manage(){
+        browserHistory.push('/manage')
+    }
+
     render(){
-        console.log('space',this.props)
+        //console.log('space',this.props)
         return(
             <div style={{height:'100%'}}>
                 <Head currentPath={this.props.location.pathname}/>
+                <div className={spaceStyle.spaceManage}><Button type="ghost" shape="circle" icon="setting" onClick={this.go2Manage.bind(this)} /></div>
                 <div className={spaceStyle.spacePart}>
                     <div className={spaceStyle.spaceTitle}>发个新日志吧</div>
                     <div className={spaceStyle.spaceEditorTitle}>

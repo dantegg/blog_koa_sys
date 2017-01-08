@@ -10,8 +10,14 @@ class BlogModel extends MongoBaseModel{
     }
 
     findNews(){
-        return this.collection.find({},{},10).toArray()
+        return this.find({},{createTime:-1},10).toArray()
         //return ttt
+    }
+
+
+
+    findBlogs(time){
+        return this.findByTime(time,10)
     }
 }
 

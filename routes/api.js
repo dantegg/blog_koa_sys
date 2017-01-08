@@ -2,6 +2,7 @@
  * Created by dantegg on 16-12-29.
  */
 const models = require('../models')
+const services = require('../services')
 const router = require('koa-router')()
 const path = require('path')
 router.prefix('/api')
@@ -62,7 +63,36 @@ router.post('/postblog',async (ctx)=>{
     ctx.body = await models.blog.create(blog)
 })
 
+//TODO 这个分页写的不对
+router.post('/findBlogByPage',async(ctx)=>{
+    const body = ctx.request.body
+    let findTime = ''
+    if(body.id === undefined){
+        findTime = Date.now()
+    }else{
+        let record = await models.blog.find({_id:body.id})
+        findTime = record.createTime
+        //console.log('find record',record)
+    }
+    console.log('findTime',findTime)
+    let blogs = await models.blog.findBlogs(findTime).toArray()
+    ctx.body = await services.news.normalizedList(blogs)
 
+})
+
+//TODO 分页写得不对所以删除博客后续也要改
+router.post('/deleteblog',async(ctx)=>{
+    //console.log('sss',ctx.request.body)
+    const body = ctx.request.body
+    const id = body.id
+    let delResponse = await models.blog.del(id)
+    let time = Date.now()
+    //console.log('delete response',delResponse)
+    let blogs = await models.blog.findBlogs(time).toArray()
+    let resblogs = await services.news.normalizedList(blogs)
+    //console.log('zz',zz)
+    ctx.body = resblogs
+})
 
 router.get('/session/get',async(ctx)=>{
     ctx.body = ctx.session

@@ -24,6 +24,12 @@ class Login extends Component{
         }
     }
 
+    componentDidMount(){
+        if(this.props.isLogin === true){
+            browserHistory.push('/space')
+        }
+    }
+
     //登录按钮点击事件
     login(){
         //console.log('login')
@@ -59,7 +65,7 @@ class Login extends Component{
 
     render(){
         const { getFieldDecorator } = this.props.form;
-
+        console.log('login',this.props)
         return(
             <div>
                 <Head currentPath={this.props.location.pathname}/>

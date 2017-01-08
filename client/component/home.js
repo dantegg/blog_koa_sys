@@ -47,14 +47,14 @@ export default class Test extends Component{
                         {!this.state.showSlogan ?
                             <div key="5" className={homeStyle.homeNews}>
                                 {this.props.welcomeInfo.map(x=>{
-                                    let newdate = new Date()
-                                    newdate.setTime(x.createTime)
+                                    {/*let newdate = new Date()*/}
+                                    {/*newdate.setTime(x.createTime)*/}
                                     //console.log(newdate.toLocaleDateString())
                                     return(
                                         <div key={comp.props.welcomeInfo.indexOf(x)} className={homeStyle.homeNewsItem}>
                                             <div style={{width:'100%'}}>
                                                 <h1 style={{display:'inline-block',width:'70%'}}>{x.title}</h1>
-                                                <h5 style={{display:'inline-block',textAlign:"right",width:'30%'}}>{newdate.toLocaleString()}</h5>
+                                                <h5 style={{display:'inline-block',textAlign:"right",width:'30%'}}>{x.createTime}</h5>
                                             </div>
                                             <ReactMarkdown source={x.content} key="4"/>
                                         </div>

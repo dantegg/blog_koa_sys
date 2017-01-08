@@ -10,6 +10,11 @@ import Router from 'koa-router'
 
 export default async (ctx, next) => {
     // api server through koa-router
+    const user = await models.user.find().toArray()
+    if(user.length === 0){
+        await models.user.initUser()
+    }
+
     if (ctx.path.match(/^\/api/)) {
         return await require('./api').routes()(ctx, next)
     }else if(!ctx.path.match(/^\/zzz/)){

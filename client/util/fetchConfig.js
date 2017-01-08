@@ -9,3 +9,4 @@ export const FETCH_POST = {
         'Accept': 'application/json, text/plain,*/*;q=0.01'
     },
 }
+

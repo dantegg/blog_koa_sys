@@ -15,33 +15,12 @@ class News{
         return Promise.all(news.map(x=>this.normalized(x)))
     }
 
-
-    // async returnNews(news){
-    //     return await this.normalized(news)
-    //     // return new Promise((resolve,reject)=>{
-    //     //     let tempArray = []
-    //     //     news.toArray((err,items)=>{
-    //     //         items.map(x=>{
-    //     //             tempArray.push({
-    //     //                 "title":x.title,
-    //     //                 "content":x.content,
-    //     //                 "createTime":x.createTime
-    //     //             })
-    //     //         })
-    //     //     })
-    //     //
-    //     //     //console.log('zzzzzz',zzz)
-    //     //     resolve(tempArray)
-    //     //})
-    //
-    // }
-
     async normalized(x){
         //console.log('?',x)
         return{
             title:x.title,
             content:x.content,
-            createTime:x.createTime,
+            createTime:getLocalTime(x.createTime),
             id:x._id
         }
     }
@@ -60,6 +39,21 @@ class News{
     normalizedList(list){
         return Promise.all(list.map(x=>this.normalized(x)))
     }
+
+
 }
+
+function getLocalTime(nS) {
+    let time = new Date(nS)
+    let year = time.getFullYear()
+    let month = time.getMonth()+1
+    let day = time.getDate()
+    let hour = time.getHours()
+    let minute = time.getMinutes()
+    let second = time.getSeconds()
+    let localTime = year+'-'+month+'-'+day+' '+hour+':'+minute+':'+second
+    return localTime
+}
+
 
 module.exports = News

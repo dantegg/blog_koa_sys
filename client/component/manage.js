@@ -50,10 +50,10 @@ class Manage extends Component{
             title: '日期',
             dataIndex: 'createTime',
             render: (text,col)=>{
-                let newdate = new Date()
-                newdate.setTime(text)
-                let time = newdate.toLocaleString()
-                return<div>{time}</div>
+                // let newdate = new Date()
+                // newdate.setTime(text)
+                // let time = newdate.toLocaleString()
+                return<div>{text}</div>
             }
         }, {
             title: '操作',

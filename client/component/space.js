@@ -4,7 +4,7 @@
 import React,{Component} from 'react'
 import {MarkdownEditor} from 'react-markdown-editor'
 import Head from './head'
-import {Button,Input,Icon} from 'antd'
+import {Button,Input,notification} from 'antd'
 import {browserHistory} from 'react-router'
 import spaceStyle from '../css/space.css'
 
@@ -22,7 +22,7 @@ export default class Space extends Component{
     constructor(props){
         super(props)
         this.state={
-            //editorState:null
+            //reRender:false
         }
     }
 
@@ -32,29 +32,44 @@ export default class Space extends Component{
         }
     }
 
+
     postBlog(){
-        //console.log('ref',this.refs.title.refs.input.value)
-        //console.log('ref',this.refs.editor.state.content)
+        console.log('ref',this.refs.title.refs)
+        console.log('ref',this.refs.editor)
+        let comp = this
         let title = this.refs.title.refs.input.value
         let content = this.refs.editor.state.content
+        // this.refs.editor.onChangeHandler(function (e) {
+        //     console.log('ss',e)
+        // })
+
         let fetchData = FETCH_POST
         fetchData.body=`title=${title}&content=${content}`
         fetch('/api/postblog',fetchData).then(res=>{
             if(res.ok){
                 console.log(res)
+                if(res.status === 200){
+                    notification.success({
+                        message:'成功',
+                        description:'发布博客成功'
+                    })
+                    comp.setState({
+                        reRender:!comp.state.reRender
+                    })
+                    comp.refs.title.refs.input.value = ''
+                    document.getElementsByTagName("textarea")[0].value=''
+                }
             }
         })
     }
 
-    onEditorStateChange(){
-        console.log('123')
-    }
 
     uploadImageCallBack(){
 
     }
 
     go2Manage(){
+        //window.location.href='/manage'
         browserHistory.push('/manage')
     }
 
@@ -74,8 +89,7 @@ export default class Space extends Component{
                         <h1>正文</h1>
                     </div>
                     <div className={spaceStyle.spaceEditor}>
-
-                        <MarkdownEditor initialContent="Test" iconsSet="font-awesome" ref="editor"/>
+                        <MarkdownEditor initialContent="text" iconsSet="font-awesome" ref="editor"/>
                     </div>
                     <div className={spaceStyle.spacePost}>
                         <Button type="primary" onClick={this.postBlog.bind(this)}>post</Button>

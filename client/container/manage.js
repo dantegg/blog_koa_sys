@@ -9,7 +9,8 @@ import Manage from '../component/manage'
 function mapStateToProps(state) {
     return{
         welcomeInfo:state.welcomeInfo,
-        isLogin:state.isLogin
+        isLogin:state.isLogin,
+        blogCount:state.blogCount
     }
 }
 

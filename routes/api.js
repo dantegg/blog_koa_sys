@@ -77,21 +77,39 @@ router.post('/findBlogByPage',async(ctx)=>{
     console.log('findTime',findTime)
     let blogs = await models.blog.findBlogs(findTime).toArray()
     ctx.body = await services.news.normalizedList(blogs)
-
 })
+
+
+//a simple pagination
+router.post('/findBlogBySimplePagination',async(ctx)=>{
+    const body = ctx.request.body
+    let currentPage = body.currentPage
+    let pageSize = body.pageSize
+    let blogs = await models.blog.findBlogByPage(currentPage,pageSize)
+    let blogList = await services.news.normalizedList(blogs)
+    let blogCount = await models.blog.findBlogSize()
+    ctx.body = {
+        blogList:blogList,
+        blogCount:blogCount
+    }
+})
+
 
 //TODO 分页写得不对所以删除博客后续也要改
 router.post('/deleteblog',async(ctx)=>{
     //console.log('sss',ctx.request.body)
-    const body = ctx.request.body
-    const id = body.id
-    let delResponse = await models.blog.del(id)
-    let time = Date.now()
-    //console.log('delete response',delResponse)
-    let blogs = await models.blog.findBlogs(time).toArray()
-    let resblogs = await services.news.normalizedList(blogs)
-    //console.log('zz',zz)
-    ctx.body = resblogs
+    let body = ctx.request.body
+    let id = body.id
+    let currentPage = body.currentPage
+    let pageSize = body.pageSize
+    await models.blog.del(id)
+    let blogs = await models.blog.findBlogByPage(currentPage,pageSize)
+    let blogList = await services.news.normalizedList(blogs)
+    let blogCount = await models.blog.findBlogSize()
+    ctx.body = {
+        blogList:blogList,
+        blogCount:blogCount
+    }
 })
 
 router.get('/session/get',async(ctx)=>{

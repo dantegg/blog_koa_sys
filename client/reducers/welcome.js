@@ -1,7 +1,7 @@
 /**
  * Created by dantegg on 16-12-30.
  */
-import {WELCOME,DELETE_BLOG} from '../actions/home'
+import {WELCOME,DELETE_BLOG,PAGE_CHANGE} from '../actions/home'
 
 
 export function welcomeInfo(state =[],action) {
@@ -9,6 +9,8 @@ export function welcomeInfo(state =[],action) {
         case WELCOME:
             return state
         case DELETE_BLOG:
+            return action.list
+        case PAGE_CHANGE:
             return action.list
         default:
             return state
@@ -19,6 +21,17 @@ export function isLogin(state ={},action) {
     switch (action.type){
         case WELCOME:
             return state
+        default:
+            return state
+    }
+}
+
+export function blogCount(state=0,action) {
+    switch (action.type){
+        case PAGE_CHANGE:
+            return action.blogCount
+        case DELETE_BLOG:
+            return action.blogCount
         default:
             return state
     }

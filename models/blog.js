@@ -14,10 +14,20 @@ class BlogModel extends MongoBaseModel{
         //return ttt
     }
 
+    //simple pagination
+    findBlogByPage(currentPage,pageSize){
+        let limitNum = parseInt(pageSize)
+        let skipNum =  (parseInt(currentPage)-1)*parseInt(pageSize)
+        return this.collection.find({}).sort({createTime:-1}).limit(limitNum).skip(skipNum).toArray()
+    }
+
+    findBlogSize(){
+        return this.collection.count()
+    }
 
 
     findBlogs(time){
-        return this.findByTime(time,10)
+        return this.findByTime(time,100)
     }
 }
 

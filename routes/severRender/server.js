@@ -50,15 +50,17 @@ export default async (ctx, next, renderProps) => {
 
 
     if(renderProps.location.pathname === '/manage'){
-        let time = Date.now()
-        //console.log('time',time)
-        const news = await models.blog.findBlogs(time).toArray()
+        console.log('enter manage')
+        const initBlogs = await models.blog.findBlogByPage(1,10
+        )
+        const blogCount = await models.blog.findBlogSize()
         //console.log('news',news)
-        let blogs = await services.news.normalizedList(news)
-        //console.log('blogs',blogs)
+        let blogs = await services.news.normalizedList(initBlogs)
+        console.log('blogs',blogCount)
         store = configureStore({
             welcomeInfo:blogs,
-            isLogin:!!ctx.session.userId
+            isLogin:!!ctx.session.userId,
+            blogCount:blogCount
         })
     }
     //     let newsArray = []

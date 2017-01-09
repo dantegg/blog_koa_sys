@@ -2,8 +2,7 @@ this is a blog system based on koa2+react isomorphic server render+redux(react-r
 ### reference
  * react koa isomorphic demo  
     https://github.com/princeV/koa2-react-redux-webpack-boilerplate  
-    
- https://github.com/chikara-chan/react-isomorphic-boilerplate
+    https://github.com/chikara-chan/react-isomorphic-boilerplate
 
 
 ### Start

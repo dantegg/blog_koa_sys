@@ -2,7 +2,6 @@
  * Created by dantegg on 2017/1/2.
  */
 const models = require('../../models')
-
 import React from 'react'
 import { RouterContext } from 'react-router'
 import { renderToString } from 'react-dom/server'
@@ -41,6 +40,25 @@ export default async (ctx, next, renderProps) => {
             welcomeInfo:news,
             isLogin:!!ctx.session.userId
         })
+    }
+
+    let re = /\/blog\/./
+    if(re.test(renderProps.location.pathname)){
+        let blogId = renderProps.location.pathname.substr(6)
+        //console.log('server render blog',blogId)
+        let checkId = await models.blog.checkId(blogId)
+        //console.log('???',checkId)
+        if(checkId){
+            const getOneBlog = await models.blog.get(blogId)
+            //console.log('blog is',getOneBlog)
+            store = configureStore({
+                isLogin:!!ctx.session.userId,
+                oneBlog:getOneBlog
+            })
+        }else{
+            ctx.redirect('/',{})
+        }
+
     }
 
     // if(renderProps.location.pathname === '/login'){

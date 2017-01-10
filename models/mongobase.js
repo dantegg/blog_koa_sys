@@ -19,6 +19,10 @@ class MongoBaseModel{
         return temp1
     }
 
+    checkId(id){
+        return ObjectID.isValid(id)
+    }
+
     async create(obj){
         const insertResult = await this.collection.insertOne(obj)
         return insertResult && insertResult.insertedId

@@ -28,6 +28,11 @@ export default class Test extends Component{
         })
     }
 
+    go2blog(id){
+        console.log('blog',id)
+        window.location.href='/blog/'+id
+    }
+
     render(){
             let comp = this
             return(
@@ -51,7 +56,7 @@ export default class Test extends Component{
                                     {/*newdate.setTime(x.createTime)*/}
                                     //console.log(newdate.toLocaleDateString())
                                     return(
-                                        <div key={comp.props.welcomeInfo.indexOf(x)} className={homeStyle.homeNewsItem}>
+                                        <div key={comp.props.welcomeInfo.indexOf(x)} className={homeStyle.homeNewsItem} onClick={()=>this.go2blog(x.id)}>
                                             <div style={{width:'100%'}}>
                                                 <h1 style={{display:'inline-block',width:'70%'}}>{x.title}</h1>
                                                 <h5 style={{display:'inline-block',textAlign:"right",width:'30%'}}>{x.createTime}</h5>

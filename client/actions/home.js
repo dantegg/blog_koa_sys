@@ -54,3 +54,5 @@ function pageBlogList(res) {
         blogCount:res.blogCount
     }
 }
+
+

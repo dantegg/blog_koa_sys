@@ -7,6 +7,7 @@ import Login from '../container/login'
 import Home from '../container/home'
 import Space from '../container/space'
 import Manage from '../container/manage'
+import Blog from '../container/blog'
 import {Router,Route,browserHistory,IndexRedirect} from 'react-router'
 
 
@@ -18,6 +19,7 @@ export default (
             <Route path="home" component={Home} />
             <Route path="space" component={Space} />
             <Route path="manage" component={Manage}/>
+            <Route path="blog/:id" component={Blog} />
         </Route>
     </Router>
 )

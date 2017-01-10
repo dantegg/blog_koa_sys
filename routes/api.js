@@ -95,9 +95,9 @@ router.post('/findBlogBySimplePagination',async(ctx)=>{
 })
 
 
-//TODO 分页写得不对所以删除博客后续也要改
+//删除博客 delete blog
 router.post('/deleteblog',async(ctx)=>{
-    console.log('sss',ctx.request.body)
+    //console.log('sss',ctx.request.body)
     let body = ctx.request.body
     let id = body.id
     let currentPage = parseInt(body.currentPage)
@@ -110,6 +110,12 @@ router.post('/deleteblog',async(ctx)=>{
         blogList:blogList,
         blogCount:blogCount
     }
+})
+
+router.post('/getBlogById',async(ctx)=>{
+    let body = ctx.request.body
+    let blogId = body.blogId
+    ctx.body = await models.blog.get(blogId)
 })
 
 router.get('/session/get',async(ctx)=>{

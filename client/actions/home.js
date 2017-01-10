@@ -12,15 +12,17 @@ export function welcome() {
     return 0
 }
 
-export function deleteBlog(id){
+export function deleteBlog(id,currentPage,pageSize,callback){
     return (dispatch)=>{
         let fetchData = FETCH_POST
-        fetchData.body=`id=${id}`
+        fetchData.body=`id=${id}&currentPage=${currentPage}&pageSize=${pageSize}`
         fetch('/api/deleteblog',fetchData).then(function (res) {
             if(res.ok){
                 res.json().then(result=>{
                     //console.log('result',result)
+                    callback()
                     dispatch(pageBlogList(result))
+
                 })
             }
         })

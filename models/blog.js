@@ -18,6 +18,7 @@ class BlogModel extends MongoBaseModel{
     findBlogByPage(currentPage,pageSize){
         let limitNum = parseInt(pageSize)
         let skipNum =  (parseInt(currentPage)-1)*parseInt(pageSize)
+        if(skipNum <0) skipNum= 0
         return this.collection.find({}).sort({createTime:-1}).limit(limitNum).skip(skipNum).toArray()
     }
 

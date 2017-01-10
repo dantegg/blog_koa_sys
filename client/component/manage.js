@@ -36,13 +36,16 @@ class Manage extends Component{
     }
 
     delBlog(id,col,index){
-        console.log('sss',col,index)
+       // console.log('sss',col,index)
+        let comp = this
         let currentPage = parseInt(this.state.currenPage)
         if(index === 0){
             currentPage = parseInt(this.state.currenPage)-1
         }
         let pageSize = 10
-        this.props.deleteBlog(id,currentPage,pageSize)
+        this.props.deleteBlog(id,currentPage,pageSize,function () {
+            comp.props.pageChange(currentPage,10)
+        })
         //this.props.deleteBlog(id)
     }
     render(){
@@ -53,7 +56,7 @@ class Manage extends Component{
             pageSize:10,
             onChange:this.pageChange.bind(this)
         }
-        console.log('page',pagination)
+        //console.log('page',pagination)
         const columns = [{
             title: '标题',
             dataIndex: 'title',

@@ -97,11 +97,11 @@ router.post('/findBlogBySimplePagination',async(ctx)=>{
 
 //TODO 分页写得不对所以删除博客后续也要改
 router.post('/deleteblog',async(ctx)=>{
-    //console.log('sss',ctx.request.body)
+    console.log('sss',ctx.request.body)
     let body = ctx.request.body
     let id = body.id
-    let currentPage = body.currentPage
-    let pageSize = body.pageSize
+    let currentPage = parseInt(body.currentPage)
+    let pageSize = parseInt(body.pageSize)
     await models.blog.del(id)
     let blogs = await models.blog.findBlogByPage(currentPage,pageSize)
     let blogList = await services.news.normalizedList(blogs)

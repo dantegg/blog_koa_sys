@@ -2,8 +2,7 @@
 /**
  * Created by dantegg on 16-12-23.
  */
-const {ObjectID} = require('mongodb')
-
+const ObjectID = require('mongodb').ObjectID
 class MongoBaseModel{
     init(collection){
         this.collection = collection
@@ -11,10 +10,13 @@ class MongoBaseModel{
 
     toId(id){
         if(id instanceof ObjectID){
+            //console.log('objectId',id)
             return id
         }
-
-        return new ObjectID(id)
+        //console.log('ssssssss')
+        let temp1 = new ObjectID(id)
+        //console.log('id is',temp1)
+        return temp1
     }
 
     async create(obj){
@@ -34,6 +36,7 @@ class MongoBaseModel{
         return this.collection.updateOne({_id:this.toId(id)},{$set:part})
     }
     del(id){
+        console.log('delete',id)
         return this.collection.deleteOne({_id:this.toId(id)})
     }
 

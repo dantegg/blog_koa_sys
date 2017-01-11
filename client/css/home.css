@@ -43,3 +43,19 @@
     margin-top: 20px;
     cursor: pointer;
 }
+
+.home-news-item:after,.home-news-item:before{
+    content:'';
+    z-index: -1;
+    background:#f00;
+    position:absolute;
+    top:50%;
+    bottom:0;
+    left:30px;
+    right:30px;
+    -webkit-box-shadow:  0 0 20px rgba(0,0,0,0.8);
+    -moz-box-shadow:  0 0 20px rgba(0,0,0,0.8);
+    box-shadow:  0 0 20px rgba(0,0,0,0.8);
+    border-radius:100px/10px
+
+}

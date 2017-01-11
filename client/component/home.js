@@ -6,11 +6,9 @@ import React,{Component} from 'react'
 import homeStyle from '../css/home.css'
 import ReactMarkdown from 'react-markdown'
 import {Button} from 'antd'
-import QueueAnim from 'rc-queue-anim'
+//import QueueAnim from 'rc-queue-anim'
 import Animate from 'rc-animate'
 import Head from './head'
-
-import DateFormat from '../../util'
 
 export default class Test extends Component{
     constructor(props){

@@ -31,7 +31,8 @@ class Blog extends Component{
                 <Head/>
                 <div className={blogStyle.blogMain}>
                     <h1>{this.props.oneBlog.title}</h1>
-                    <div>
+                    <div style={{color:"#919191"}}>{this.props.oneBlog.createTime}</div>
+                    <div style={{marginTop:'30px'}}>
                         <ReactMarkdown source={this.props.oneBlog.content} key="content" />
                     </div>
                 </div>

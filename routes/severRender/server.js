@@ -50,10 +50,11 @@ export default async (ctx, next, renderProps) => {
         //console.log('???',checkId)
         if(checkId){
             const getOneBlog = await models.blog.get(blogId)
+            let oneBlog = await services.news.normalized(getOneBlog)
             //console.log('blog is',getOneBlog)
             store = configureStore({
                 isLogin:!!ctx.session.userId,
-                oneBlog:getOneBlog
+                oneBlog:oneBlog
             })
         }else{
             ctx.redirect('/',{})

@@ -34,8 +34,8 @@ export default class Space extends Component{
 
 
     postBlog(){
-        console.log('ref',this.refs.title.refs)
-        console.log('ref',this.refs.editor)
+        //console.log('ref',this.refs.title.refs)
+        //console.log('ref',this.refs.editor)
         let comp = this
         let title = this.refs.title.refs.input.value
         let content = this.refs.editor.state.content

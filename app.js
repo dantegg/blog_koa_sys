@@ -82,6 +82,15 @@ compiler.plugin('emit', (compilation, callback) => {
     callback()
 })
 
+let SESSION_CONFIG = {
+    key: 'koa:sess:20170101',
+    maxAge:360000,
+    overWrite:true,
+    httpOnly:true,
+    signed:true
+}
+
+
 app.keys=['blog20170101']
 app.env='development'
 app.use(logger())
@@ -103,7 +112,7 @@ app.use(json())
 app.use(mount('/static',require('koa-static')(__dirname+'/public')))
 
 app.use(views(__dirname+'/views/dev',{map: {html: 'ejs'}}))
-app.use(convert(session(app)))
+app.use(convert(session(SESSION_CONFIG,app)))
 //app.use(middleware)
 app.use(router)
 //app.use(router.routes(),router.allowedMethods())

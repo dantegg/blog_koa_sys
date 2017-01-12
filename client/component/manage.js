@@ -62,8 +62,9 @@ class Manage extends Component{
             dataIndex: 'title',
             render: (text,col)=> {
                 //console.log(col.id)
+                let blogUrl = '/blog/'+col.id
                 //let timestep = new Date()
-                return<a href="#">{text}</a>
+                return<a href={blogUrl}>{text}</a>
             },
         }, {
             title: '日期',

@@ -59,7 +59,9 @@ export default class Test extends Component{
                                                 <h1 style={{display:'inline-block',width:'70%'}}>{x.title}</h1>
                                                 <h5 style={{display:'inline-block',textAlign:"right",width:'30%'}}>{x.createTime}</h5>
                                             </div>
+                                            <div className={homeStyle.homeNewsItemMarkdown}>
                                             <ReactMarkdown source={x.content} key="4"/>
+                                            </div>
                                         </div>
                                     )
                                 })}

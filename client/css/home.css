@@ -27,15 +27,17 @@
 .home-news{
     font-size:1rem;
     text-align:left;
-    width:600px;
+    width:60%;
     margin:0 auto;
 
 }
 
 .home-news-item{
-    padding:10px;
+    padding:20px;
     border-bottom:1px solid #dedede;
-    height:200px;
+    min-height:200px;
+    max-height:400px;
+    word-wrap:break-word;
     -webkit-box-shadow: 0px 1px 4px rgba(0,0,0,0.3);
     -moz-box-shadow:  0px 1px 4px rgba(0,0,0,0.3);
     box-shadow: 0px 1px 4px rgba(0,0,0,0.3);
@@ -50,13 +52,19 @@
     content:'';
     position:absolute;
     z-index: -1;
-    -webkit-box-shadow:  0 0 20px rgba(0,0,0,0.8);
-    -moz-box-shadow:  0 0 20px rgba(0,0,0,0.8);
-    box-shadow:  0 0 20px rgba(0,0,0,0.8);
-    top:50%;
+    -webkit-box-shadow:  0 0 20px rgba(16,142,233,0.5);
+    -moz-box-shadow:  0 0 20px rgba(16,142,233,0.5);
+    box-shadow:  0 0 20px rgba(16,142,233,0.5);
+    top:10%;
     bottom:0;
     left:10px;
     right:10px;
     -moz-border-radius:100px / 10px;
     border-radius:100px / 10px;
+}
+
+
+.home-news-item-markdown{
+    overflow: hidden;
+    height:70%
 }

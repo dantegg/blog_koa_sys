@@ -83,13 +83,12 @@ compiler.plugin('emit', (compilation, callback) => {
 })
 
 let SESSION_CONFIG = {
-    key: 'koa:sess:20170101',
+    key: 'blog20170101',
     maxAge:360000,
     overWrite:true,
     httpOnly:true,
     signed:true
 }
-
 
 app.keys=['blog20170101']
 app.env='development'

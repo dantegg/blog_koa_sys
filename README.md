@@ -17,4 +17,4 @@ run `node run.js`
 
 ###TODO  
 add user initialization
-add session time out
+~~add session max age~~

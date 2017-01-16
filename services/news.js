@@ -25,6 +25,17 @@ class News{
         }
     }
 
+    async normalizeTag(t){
+        return{
+            tagName:x.tagName,
+            id:x._id
+        }
+    }
+
+    normalizedTagList(list){
+        return Promise.all(list.map(x=>this.normalizeTag(x)))
+    }
+
     // async normalizedWithId(x){
     //     let newdate = new Date()
     //     newdate.setTime(x.createTime)

@@ -4,9 +4,10 @@
 import React,{Component} from 'react'
 import {MarkdownEditor} from 'react-markdown-editor'
 import Head from './head'
-import {Button,Input,notification} from 'antd'
+import {Button,Input,notification,Tag} from 'antd'
 import {browserHistory} from 'react-router'
 import spaceStyle from '../css/space.css'
+const CheckableTag = Tag.CheckableTag
 
 const FETCH_POST = {
     method:'post',
@@ -23,6 +24,7 @@ export default class Space extends Component{
         super(props)
         this.state={
             //reRender:false
+            selectedTags:[]
         }
     }
 
@@ -30,6 +32,16 @@ export default class Space extends Component{
         if(!this.props.isLogin){
             browserHistory.push('/')
         }
+        this.props.getAllTags()
+    }
+
+    tagChange(tag, checked) {
+        const { selectedTags } = this.state;
+        const nextSelectedTags = checked ?
+            [...selectedTags, tag] :
+            selectedTags.filter(t => t !== tag);
+        //console.log('You are interested in: ', nextSelectedTags);
+        this.setState({ selectedTags: nextSelectedTags });
     }
 
 
@@ -74,7 +86,9 @@ export default class Space extends Component{
     }
 
     render(){
-        //console.log('space',this.props)
+        console.log('space',this.props)
+        const { selectedTags } = this.state;
+        const tagsFromServer = ['Movie', 'Books', 'Music'];
         return(
             <div style={{height:'100%'}}>
                 <Head currentPath={this.props.location.pathname}/>
@@ -90,6 +104,22 @@ export default class Space extends Component{
                     </div>
                     <div className={spaceStyle.spaceEditor}>
                         <MarkdownEditor initialContent="text" iconsSet="font-awesome" ref="editor"/>
+                    </div>
+                    <div style={{paddingLeft:"20px",paddingTop:"20px"}}>选择一个标签</div>
+                    <div style={{paddingLeft:"20px",paddingRight:'20px'}}>
+                        <strong>Tags: </strong>
+                        {tagsFromServer.map(tag => (
+                            <CheckableTag
+                                key={tag}
+                                checked={selectedTags.indexOf(tag) > -1}
+                                onChange={checked => this.tagChange(tag, checked)}
+                            >
+                                {tag}
+                            </CheckableTag>
+                        ))}
+                    </div>
+                    <div style={{paddingLeft:"20px"}}>
+                        <Button type="ghost" size="small">+添加标签</Button>
                     </div>
                     <div className={spaceStyle.spacePost}>
                         <Button type="primary" onClick={this.postBlog.bind(this)}>post</Button>

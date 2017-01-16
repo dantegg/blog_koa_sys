@@ -10,3 +10,11 @@ export const FETCH_POST = {
     },
 }
 
+export const FETCH_GET = {
+    method:'post',
+    credentials:"include",
+    headers:{
+        'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8',
+        'Accept': 'application/json, text/plain,*/*;q=0.01'
+    }
+}

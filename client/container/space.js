@@ -9,7 +9,8 @@ import Space from '../component/space'
 function mapStateToProps(state) {
     return{
         welcomeInfo:state.welcomeInfo,
-        isLogin:state.isLogin
+        isLogin:state.isLogin,
+        allTags:state.allTags
     }
 }
 

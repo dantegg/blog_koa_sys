@@ -56,7 +56,8 @@ router.post('/postblog',async (ctx)=>{
     const blog = {
         title:body.title,
         content:body.content,
-        createTime:Date.now()
+        createTime:Date.now(),
+        tagId:body.tagId
     }
     // let sss = await models.blog.findNews().toArray((err,items)=>{
     //     console.log(items)
@@ -65,6 +66,19 @@ router.post('/postblog',async (ctx)=>{
     ctx.body = await models.blog.create(blog)
 })
 
+
+router.get('/getAllTags',async (ctx)=>{
+    let list = await models.tag.findAllTags().toArray()
+    ctx.body = await services.news.normalizedTagList(list)
+})
+
+router.post('/createTag',async(ctx)=>{
+    const body = ctx.request.body
+    const tag = {
+        tagName:body.tagName
+    }
+    ctx.body = await models.tag.create(tag)
+})
 
 router.post('/findBlogByPage',async(ctx)=>{
     const body = ctx.request.body

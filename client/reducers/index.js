@@ -6,10 +6,11 @@ import {combineReducers} from 'redux'
 //import {red_color,green_color,blue_color} from './color'
 import {welcomeInfo,isLogin,blogCount} from './welcome'
 import {oneBlog} from './blog'
+import {allTags} from './space'
 
 const rootReducer = combineReducers({
     welcomeInfo,isLogin,blogCount,
-    oneBlog,
+    oneBlog,allTags
 })
 
 

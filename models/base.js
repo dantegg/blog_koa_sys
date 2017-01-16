@@ -32,4 +32,4 @@ class BaseModel{
     }
 }
 
-model.exports = BaseModel
+module.exports = BaseModel

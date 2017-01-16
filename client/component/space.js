@@ -69,8 +69,8 @@ export default class Space extends Component{
     }
 
     go2Manage(){
-        //window.location.href='/manage'
-        browserHistory.push('/manage')
+        window.location.href='/manage'
+        //browserHistory.push('/manage')
     }
 
     render(){

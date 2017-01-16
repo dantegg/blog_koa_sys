@@ -19,13 +19,14 @@ router.post('/login',async(ctx)=>{
             success:false,
             msg:'password or username is wrong'
         }
-        //return
+        return
     }
     if(body.password !== user.password){
         ctx.body={
             success:false,
             msg:'password or username is wrong'
         }
+        return
     }
     ctx.session.userId = user._id
     console.log('user is',body.email,'login time is',new Date())

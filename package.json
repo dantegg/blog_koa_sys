@@ -66,6 +66,7 @@
     "koa-webpack-middleware": "^1.0.3",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
+    "marked": "^0.3.6",
     "mongodb": "^2.2.11",
     "node-css": "^0.1.0",
     "node-sass": "^4.1.1",

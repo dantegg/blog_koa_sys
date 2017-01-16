@@ -28,6 +28,7 @@ router.post('/login',async(ctx)=>{
         }
     }
     ctx.session.userId = user._id
+    console.log('user is',body.email,'login time is',new Date())
     ctx.body={
         success:true,
         msg:'login success'

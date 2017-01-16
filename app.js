@@ -82,9 +82,9 @@ compiler.plugin('emit', (compilation, callback) => {
     callback()
 })
 
-let SESSION_CONFIG = {
+const SESSION_CONFIG = {
     key: 'blog20170101',
-    maxAge:360000,
+    maxAge:3600000,
     overWrite:true,
     httpOnly:true,
     signed:true

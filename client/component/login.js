@@ -2,7 +2,7 @@
  * Created by dantegg on 17-1-3.
  */
 import React,{Component} from 'react'
-import {Form, Icon, Input, Button, Checkbox} from 'antd'
+import {Form, Icon, Input, Button, Checkbox,notification} from 'antd'
 import { browserHistory } from 'react-router'
 import Head from './head'
 const FormItem = Form.Item;
@@ -46,8 +46,13 @@ class Login extends Component{
                         console.log('sss')
                         //browserHistory.push('/space')
                         window.location.href='/space'
+                    }else{
+                        notification.error({
+                            message:'错误',
+                            description:'用户名或密码错误!'
+                        })
                     }
-                    console.log('login',result)
+                    //console.log('login',result)
                 })
             }
         })

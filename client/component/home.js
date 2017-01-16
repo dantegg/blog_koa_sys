@@ -4,11 +4,12 @@
 import React,{Component} from 'react'
 // import {PrismCode} from 'react-prism'
 import homeStyle from '../css/home.css'
-import ReactMarkdown from 'react-markdown'
+//import ReactMarkdown from 'react-markdown'
 import {Button} from 'antd'
 //import QueueAnim from 'rc-queue-anim'
 import Animate from 'rc-animate'
 import Head from './head'
+import marked from 'marked'
 
 export default class Test extends Component{
     constructor(props){
@@ -59,8 +60,9 @@ export default class Test extends Component{
                                                 <h1 style={{display:'inline-block',width:'70%'}}>{x.title}</h1>
                                                 <h5 style={{display:'inline-block',textAlign:"right",width:'30%'}}>{x.createTime}</h5>
                                             </div>
-                                            <div className={homeStyle.homeNewsItemMarkdown}>
-                                            <ReactMarkdown source={x.content} key="4"/>
+                                            <div className={homeStyle.homeNewsItemMarkdown} key="4" dangerouslySetInnerHTML={{__html:marked(x.content)}}>
+                                            {/*<ReactMarkdown source={x.content} key="4"/>*/}
+                                                {/*{marked(x.content)}*/}
                                             </div>
                                         </div>
                                     )

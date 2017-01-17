@@ -5,7 +5,7 @@ import React,{Component} from 'react'
 // import {PrismCode} from 'react-prism'
 import homeStyle from '../css/home.css'
 //import ReactMarkdown from 'react-markdown'
-import {Button,Icon} from 'antd'
+import {Button,Icon,Tag} from 'antd'
 //import QueueAnim from 'rc-queue-anim'
 import Animate from 'rc-animate'
 import Head from './head'
@@ -38,18 +38,20 @@ export default class Test extends Component{
             return(
                 <div style={{height:'100%'}}>
                     <Head currentPath={this.props.location.pathname}/>
-                    <div style={{float:'left',fontSize:'1.5rem',padding:'50px'}}>
-                        <Icon type="github" style={{cursor:'pointer'}} onClick={function () {
-                            window.open('https://github.com/dantegg')
-                        }}/>
-                    </div>
                     <Animate transitionAppear transitionName="fade">
                         {this.state.showSlogan ?
                             <div className={homeStyle.homeSlogan} key="6">
                                 <div key="1">吾生也有涯，而知也无涯，以有涯随无涯，殆已</div>
                                 <div style={{textAlign:'right'}} key="2">——— 庄子</div>
                                 <Button type="ghost" onClick={this.onEnter.bind(this)} key="3">进入</Button>
-                            </div>:<div key="5" className={homeStyle.homeNews}>
+                            </div>:
+                            <div>
+                            <div style={{float:'left',fontSize:'1.5rem',padding:'50px'}}>
+                                <Icon type="github" style={{cursor:'pointer'}} onClick={function () {
+                                    window.open('https://github.com/dantegg')
+                                }}/>
+                            </div>
+                            <div key="5" className={homeStyle.homeNews}>
                                 {this.props.welcomeInfo.map(x=>{
                                     {/*let newdate = new Date()*/}
                                     {/*newdate.setTime(x.createTime)*/}
@@ -59,6 +61,9 @@ export default class Test extends Component{
                                             <div style={{width:'100%'}}>
                                                 <h1 style={{display:'inline-block',width:'70%'}}>{x.title}</h1>
                                                 <h5 style={{display:'inline-block',textAlign:"right",width:'30%'}}>{x.createTime}</h5>
+                                                <div>{x.tags.map(t=>{
+                                                    return <Tag color="#108ee9">{t}</Tag>
+                                                })}</div>
                                             </div>
                                             <div className={homeStyle.homeNewsItemMarkdown} key="4" dangerouslySetInnerHTML={{__html:marked(x.content)}}>
                                                 {/*<ReactMarkdown source={x.content} key="4"/>*/}
@@ -73,6 +78,7 @@ export default class Test extends Component{
                                 <div style={{textAlign:'center',height:'100px',lineHeight:'100px'}}>
                                     2017
                                 </div>
+                            </div>
                             </div>
                         }
                     </Animate>

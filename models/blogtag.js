@@ -1,7 +1,7 @@
 /**
  * Created by dantegg on 2017/1/16.
  */
-const MongoBaseModel = require('./base')
+const MongoBaseModel = require('./mongobase')
 
 class blogTag extends MongoBaseModel{
     init(collection){
@@ -13,8 +13,11 @@ class blogTag extends MongoBaseModel{
         return this.find()
     }
 
-    findTagById(id){
-        return this.collection.findOne({_id:id})
+    async findTagById(id){
+        //console.log('tag id',id)
+        let name = await this.get(id)
+        console.log('name',name.tagName)
+        return name.tagName
     }
 
     findTagByName(tagName){

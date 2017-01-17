@@ -6,7 +6,8 @@ import {GET_ALL_TAGS} from '../actions/home'
 export function allTags(state=[],action) {
     switch (action.type){
         case GET_ALL_TAGS:
-            return action.tagList
+            //console.log('action',action)
+            return action.list
         default:
             return state
     }

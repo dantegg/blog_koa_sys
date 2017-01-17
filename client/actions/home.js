@@ -63,7 +63,24 @@ export function getAllTags() {
         fetch('/api/getAllTags',fetchData).then(function (res) {
             if(res.ok){
                 res.json().then(result=>{
+                    console.log(result)
                     dispatch(getTagList(result))
+                })
+            }
+        })
+    }
+}
+
+export function addTag(tagName) {
+    return(dispatch)=>{
+        let fetchData = FETCH_POST
+        fetchData.body = `tagName=${tagName}`
+        fetch('/api/createTag',fetchData).then(function (res) {
+            if(res.ok){
+                res.json().then(result=>{
+                    if(result.success){
+                        dispatch(getAllTags())
+                    }
                 })
             }
         })
@@ -73,6 +90,6 @@ export function getAllTags() {
 function getTagList(res) {
     return{
         type:GET_ALL_TAGS,
-        list:res.tagList
+        list:res
     }
 }

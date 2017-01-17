@@ -10,12 +10,9 @@ class MongoBaseModel{
 
     toId(id){
         if(id instanceof ObjectID){
-            //console.log('objectId',id)
             return id
         }
-        //console.log('ssssssss')
         let temp1 = new ObjectID(id)
-        //console.log('id is',temp1)
         return temp1
     }
 

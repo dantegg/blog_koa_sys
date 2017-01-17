@@ -4,9 +4,11 @@
 import React,{Component} from 'react'
 import {MarkdownEditor} from 'react-markdown-editor'
 import Head from './head'
-import {Button,Input,notification,Tag} from 'antd'
+import {Button,Input,notification,Tag,Modal} from 'antd'
 import {browserHistory} from 'react-router'
 import spaceStyle from '../css/space.css'
+import queryString from 'query-string'
+
 const CheckableTag = Tag.CheckableTag
 
 const FETCH_POST = {
@@ -28,6 +30,10 @@ export default class Space extends Component{
         }
     }
 
+    componentWillMount(){
+
+    }
+
     componentDidMount(){
         if(!this.props.isLogin){
             browserHistory.push('/')
@@ -46,17 +52,29 @@ export default class Space extends Component{
 
 
     postBlog(){
-        //console.log('ref',this.refs.title.refs)
-        //console.log('ref',this.refs.editor)
         let comp = this
         let title = this.refs.title.refs.input.value
         let content = this.refs.editor.state.content
-        // this.refs.editor.onChangeHandler(function (e) {
-        //     console.log('ss',e)
-        // })
+        console.log('title',title)
+        console.log('content',content)
+        if(title===null||content===null){
+            notification.error({
+                message:'错误',
+                description:'请输入标题和正文'
+            })
+            return
+        }
+
+        console.log('this state',this.state.selectedTags)
 
         let fetchData = FETCH_POST
-        fetchData.body=`title=${title}&content=${content}`
+        fetchData.body=queryString.stringify({
+            title:title,
+            content:content,
+            tagList:this.state.selectedTags.map(x=>{return x.id})
+        })
+        //console.log('fetch',fetchData)
+        //fetchData.body=`title=${title}&content=${content}`
         fetch('/api/postblog',fetchData).then(res=>{
             if(res.ok){
                 console.log(res)
@@ -66,7 +84,8 @@ export default class Space extends Component{
                         description:'发布博客成功'
                     })
                     comp.setState({
-                        reRender:!comp.state.reRender
+                        reRender:!comp.state.reRender,
+                        selectedTags:[]
                     })
                     comp.refs.title.refs.input.value = ''
                     document.getElementsByTagName("textarea")[0].value=''
@@ -80,6 +99,24 @@ export default class Space extends Component{
 
     }
 
+    openAddTagModal(){
+        this.setState({
+            modalVisible:true
+        })
+    }
+
+    cancelAddTagModal(){
+        this.setState({
+            modalVisible:false
+        })
+    }
+
+    addNewTag(){
+        let newTagName = this.refs.newTag.refs.input.value
+        //console.log('new tag',newTagName)
+        this.props.addTag(newTagName)
+    }
+
     go2Manage(){
         window.location.href='/manage'
         //browserHistory.push('/manage')
@@ -88,7 +125,7 @@ export default class Space extends Component{
     render(){
         console.log('space',this.props)
         const { selectedTags } = this.state;
-        const tagsFromServer = ['Movie', 'Books', 'Music'];
+        const tagsFromServer = this.props.allTags
         return(
             <div style={{height:'100%'}}>
                 <Head currentPath={this.props.location.pathname}/>
@@ -110,21 +147,27 @@ export default class Space extends Component{
                         <strong>Tags: </strong>
                         {tagsFromServer.map(tag => (
                             <CheckableTag
-                                key={tag}
+                                key={tag.id}
                                 checked={selectedTags.indexOf(tag) > -1}
                                 onChange={checked => this.tagChange(tag, checked)}
                             >
-                                {tag}
+                                {tag.tagName}
                             </CheckableTag>
                         ))}
                     </div>
                     <div style={{paddingLeft:"20px"}}>
-                        <Button type="ghost" size="small">+添加标签</Button>
+                        <Button type="ghost" size="small" onClick={()=>this.openAddTagModal()}>+添加标签</Button>
                     </div>
                     <div className={spaceStyle.spacePost}>
                         <Button type="primary" onClick={this.postBlog.bind(this)}>post</Button>
                     </div>
                 </div>
+                <Modal title="new tag" visible={this.state.modalVisible}
+                       onOk={()=>this.addNewTag()} onCancel={()=>this.cancelAddTagModal()}
+                       okText="OK" cancelText="Cancel"
+                >
+                    <Input ref="newTag"/>
+                </Modal>
 
             </div>
         )

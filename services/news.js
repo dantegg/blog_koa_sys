@@ -6,8 +6,9 @@
 
 
 class News{
-    constructor(blogModel){
+    constructor(blogModel,tagModel){
         this.blogModel = blogModel
+        this.tagModel = tagModel
     }
 
     async getNews(){
@@ -17,18 +18,26 @@ class News{
 
     async normalized(x){
         //console.log('?',x)
+        //let tags = Promise.all(x.tagId.)
+        let tags =[]
+        x.tagId.map(async(x)=>{
+           let zzz=  await this.tagModel.findTagById(x)
+            tags.push(zzz)
+        })
+        console.log('tags',tags)
         return{
             title:x.title,
             content:x.content,
             createTime:getLocalTime(x.createTime),
-            id:x._id
+            id:x._id,
+            tags:tags
         }
     }
 
     async normalizeTag(t){
         return{
-            tagName:x.tagName,
-            id:x._id
+            tagName:t.tagName,
+            id:t._id
         }
     }
 

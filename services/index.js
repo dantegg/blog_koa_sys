@@ -4,4 +4,4 @@
 const models = require('../models')
 const NewsServices = require('./news')
 
-exports.news = new NewsServices(models.blog)
+exports.news = new NewsServices(models.blog,models.tag)

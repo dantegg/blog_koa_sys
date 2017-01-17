@@ -11,7 +11,7 @@ export const FETCH_POST = {
 }
 
 export const FETCH_GET = {
-    method:'post',
+    method:'get',
     credentials:"include",
     headers:{
         'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8',

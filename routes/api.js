@@ -53,16 +53,13 @@ router.get('/user',async(ctx)=>{
 
 router.post('/postblog',async (ctx)=>{
     const body = ctx.request.body
+    console.log('body',body)
     const blog = {
         title:body.title,
         content:body.content,
         createTime:Date.now(),
-        tagId:body.tagId
+        tagId:body.tagList
     }
-    // let sss = await models.blog.findNews().toArray((err,items)=>{
-    //     console.log(items)
-    // })
-    // console.log(sss)
     ctx.body = await models.blog.create(blog)
 })
 
@@ -77,7 +74,18 @@ router.post('/createTag',async(ctx)=>{
     const tag = {
         tagName:body.tagName
     }
-    ctx.body = await models.tag.create(tag)
+    let result = await models.tag.create(tag)
+    //console.log('create new tag',!!result)
+    if(!!result){
+        ctx.body={
+            success:true
+        }
+    }else{
+        ctx.body={
+            success:false
+        }
+    }
+
 })
 
 router.post('/findBlogByPage',async(ctx)=>{
@@ -90,7 +98,7 @@ router.post('/findBlogByPage',async(ctx)=>{
         findTime = record.createTime
         //console.log('find record',record)
     }
-    console.log('findTime',findTime)
+    //console.log('findTime',findTime)
     let blogs = await models.blog.findBlogs(findTime).toArray()
     ctx.body = await services.news.normalizedList(blogs)
 })

@@ -5,7 +5,7 @@ import React,{Component} from 'react'
 // import {PrismCode} from 'react-prism'
 import homeStyle from '../css/home.css'
 //import ReactMarkdown from 'react-markdown'
-import {Button} from 'antd'
+import {Button,Icon} from 'antd'
 //import QueueAnim from 'rc-queue-anim'
 import Animate from 'rc-animate'
 import Head from './head'
@@ -37,6 +37,11 @@ export default class Test extends Component{
             return(
                 <div style={{height:'100%'}}>
                     <Head currentPath={this.props.location.pathname}/>
+                    <div style={{float:'left',fontSize:'1.5rem',padding:'50px'}}>
+                        <Icon type="github" style={{cursor:'pointer'}} onClick={function () {
+                            window.open('https://github.com/dantegg')
+                        }}/>
+                    </div>
                     <Animate showProp="visible" transitionName="fade-leave">
                         {this.state.showSlogan ?
                             <div className={homeStyle.homeSlogan} key="6">
@@ -67,10 +72,17 @@ export default class Test extends Component{
                                         </div>
                                     )
                                 })}
+                                <div style={{textAlign:'center',height:'100px',lineHeight:'100px'}}>
+                                    more
+                                </div>
+                                <div style={{textAlign:'center',height:'100px',lineHeight:'100px'}}>
+                                    2017
+                                </div>
                             </div>:null
                         }
 
                     </Animate>
+
                 </div>
             )
     }

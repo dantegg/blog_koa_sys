@@ -10,6 +10,7 @@ import {Button,Icon} from 'antd'
 import Animate from 'rc-animate'
 import Head from './head'
 import marked from 'marked'
+import '../css/fade.css'
 
 export default class Test extends Component{
     constructor(props){
@@ -42,19 +43,13 @@ export default class Test extends Component{
                             window.open('https://github.com/dantegg')
                         }}/>
                     </div>
-                    <Animate showProp="visible" transitionName="fade-leave">
+                    <Animate transitionAppear transitionName="fade">
                         {this.state.showSlogan ?
                             <div className={homeStyle.homeSlogan} key="6">
                                 <div key="1">吾生也有涯，而知也无涯，以有涯随无涯，殆已</div>
                                 <div style={{textAlign:'right'}} key="2">——— 庄子</div>
                                 <Button type="ghost" onClick={this.onEnter.bind(this)} key="3">进入</Button>
-                            </div>:null
-                        }
-                    </Animate>
-                    <Animate showProp="visible" transitionName="fade-enter">
-
-                        {!this.state.showSlogan ?
-                            <div key="5" className={homeStyle.homeNews}>
+                            </div>:<div key="5" className={homeStyle.homeNews}>
                                 {this.props.welcomeInfo.map(x=>{
                                     {/*let newdate = new Date()*/}
                                     {/*newdate.setTime(x.createTime)*/}
@@ -66,7 +61,7 @@ export default class Test extends Component{
                                                 <h5 style={{display:'inline-block',textAlign:"right",width:'30%'}}>{x.createTime}</h5>
                                             </div>
                                             <div className={homeStyle.homeNewsItemMarkdown} key="4" dangerouslySetInnerHTML={{__html:marked(x.content)}}>
-                                            {/*<ReactMarkdown source={x.content} key="4"/>*/}
+                                                {/*<ReactMarkdown source={x.content} key="4"/>*/}
                                                 {/*{marked(x.content)}*/}
                                             </div>
                                         </div>
@@ -78,11 +73,9 @@ export default class Test extends Component{
                                 <div style={{textAlign:'center',height:'100px',lineHeight:'100px'}}>
                                     2017
                                 </div>
-                            </div>:null
+                            </div>
                         }
-
                     </Animate>
-
                 </div>
             )
     }

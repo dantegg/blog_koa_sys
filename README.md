@@ -6,8 +6,15 @@ this is a blog system based on koa2+react isomorphic server render+redux(react-r
 
 
 ### Start
-development mode  
-run `node run.js`  
+
+ * development mode
+
+    run `node run.js`
+
+ * production mode
+
+    run `node app.production.js`
+
 
 ### Something Important  
 
@@ -15,6 +22,8 @@ run `node run.js`
  app along in our response,so the client can use it as the initial state  
  [redux on the server](http://redux.js.org/docs/recipes/ServerRendering.html#redux-on-the-server)
 
-###TODO  
-add user initialization
-~~add session max age~~
+### TODO
+
+ * add user initialization
+ * ~~add session max age~~
+

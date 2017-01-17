@@ -15,6 +15,8 @@ run `node run.js`
  app along in our response,so the client can use it as the initial state  
  [redux on the server](http://redux.js.org/docs/recipes/ServerRendering.html#redux-on-the-server)
 
-###TODO  
-add user initialization
-~~add session max age~~
+###TODO
+
+ * add user initialization
+ * ~~add session max age~~
+

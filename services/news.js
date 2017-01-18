@@ -17,8 +17,6 @@ class News{
     }
 
     async normalized(x){
-        //console.log('?',x.tagId.split(','))
-        //let tags = Promise.all(x.tagId.)
         let tags =[]
         if(x.tagId !== undefined){
             x.tagId.split(',').map(async(x)=>{
@@ -26,7 +24,6 @@ class News{
                 tags.push(zzz)
             })
         }
-        console.log('tags',tags)
         return{
             title:x.title,
             content:x.content,

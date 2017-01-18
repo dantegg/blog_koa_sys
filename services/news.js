@@ -17,13 +17,15 @@ class News{
     }
 
     async normalized(x){
-        //console.log('?',x)
+        //console.log('?',x.tagId.split(','))
         //let tags = Promise.all(x.tagId.)
         let tags =[]
-        x.tagId.map(async(x)=>{
-           let zzz=  await this.tagModel.findTagById(x)
-            tags.push(zzz)
-        })
+        if(x.tagId !== undefined){
+            x.tagId.split(',').map(async(x)=>{
+                let zzz=  await this.tagModel.findTagById(x)
+                tags.push(zzz)
+            })
+        }
         console.log('tags',tags)
         return{
             title:x.title,

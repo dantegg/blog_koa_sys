@@ -64,6 +64,12 @@ router.post('/postblog',async (ctx)=>{
 })
 
 
+router.post('/moreNews',async (ctx)=>{
+    const body = ctx.request.body
+    let list = await services.news.getNews(body.nextPage)
+    ctx.body = list
+})
+
 router.get('/getAllTags',async (ctx)=>{
     let list = await models.tag.findAllTags().toArray()
     ctx.body = await services.news.normalizedTagList(list)

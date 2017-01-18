@@ -9,8 +9,8 @@ class BlogModel extends MongoBaseModel{
         this.collection.createIndex({title:1},{unique:true}).then()
     }
 
-    findNews(){
-        return this.find({},{createTime:-1},10).toArray()
+    findNews(currentPage){
+        return this.findBlogByPage(currentPage,10)
         //return ttt
     }
 

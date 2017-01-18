@@ -8,6 +8,7 @@ export const WELCOME = 'WELCOME'
 export const DELETE_BLOG = 'DELETE_BLOG'
 export const PAGE_CHANGE = 'PAGE_CHANGE'
 export const GET_ALL_TAGS = 'GET_ALL_TAGS'
+export const GET_MORE_NEWS = 'GET_MORE_NEWS'
 
 export function welcome() {
     return 0
@@ -90,6 +91,28 @@ export function addTag(tagName) {
 function getTagList(res) {
     return{
         type:GET_ALL_TAGS,
+        list:res
+    }
+}
+
+export function getMoreNews(page,callback) {
+    return(dispatch)=>{
+        let fetchData = FETCH_POST
+        fetchData.body = `nextPage=${page}`
+        fetch('/api/moreNews',fetchData).then(function (res) {
+            if(res.ok){
+                res.json().then(result=>{
+                    callback()
+                    dispatch(moreNews(result))
+                })
+            }
+        })
+    }
+}
+
+function moreNews(res) {
+    return{
+        type:GET_MORE_NEWS,
         list:res
     }
 }

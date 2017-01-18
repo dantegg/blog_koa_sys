@@ -16,7 +16,8 @@ export default class Test extends Component{
     constructor(props){
         super(props)
         this.state={
-            showSlogan:true
+            showSlogan:true,
+            currentPage:1
         }
     }
     componentDidMount(){
@@ -33,8 +34,19 @@ export default class Test extends Component{
         window.location.href='/blog/'+id
     }
 
+    moreNews(){
+        let nextPage = parseInt(this.state.currentPage) +1
+        this.props.getMoreNews(nextPage,()=>{
+            this.setState({
+                currentPage:nextPage
+            })
+        })
+    }
+
     render(){
             let comp = this
+        //console.log('this.props',this.props)
+        let showMoreStyle =  this.props.welcomeInfo.length <10?'none':'block'
             return(
                 <div style={{height:'100%'}}>
                     <Head currentPath={this.props.location.pathname}/>
@@ -43,7 +55,9 @@ export default class Test extends Component{
                             <div className={homeStyle.homeSlogan} key="6">
                                 <div key="1">吾生也有涯，而知也无涯，以有涯随无涯，殆已</div>
                                 <div style={{textAlign:'right'}} key="2">——— 庄子</div>
-                                <Button type="ghost" onClick={this.onEnter.bind(this)} key="3">进入</Button>
+                                <div style={{textAlign:'center',marginTop:'20px'}}>
+                                <Button type="ghost" onClick={this.onEnter.bind(this)} key="3" shape="circle" icon="smile-o"/>
+                                </div>
                             </div>:
                             <div>
                             <div style={{float:'left',fontSize:'1.5rem',padding:'50px'}}>
@@ -62,7 +76,7 @@ export default class Test extends Component{
                                                 <h1 style={{display:'inline-block',width:'70%'}}>{x.title}</h1>
                                                 <h5 style={{display:'inline-block',textAlign:"right",width:'30%'}}>{x.createTime}</h5>
                                                 <div>{x.tags.map(t=>{
-                                                    return <Tag color="#108ee9">{t}</Tag>
+                                                    return <Tag color="#108ee9" key={x.tags.indexOf(t)}>{t}</Tag>
                                                 })}</div>
                                             </div>
                                             <div className={homeStyle.homeNewsItemMarkdown} key="4" dangerouslySetInnerHTML={{__html:marked(x.content)}}>
@@ -72,16 +86,18 @@ export default class Test extends Component{
                                         </div>
                                     )
                                 })}
-                                <div style={{textAlign:'center',height:'100px',lineHeight:'100px'}}>
-                                    more
+                                <div style={{textAlign:'center',height:'100px',lineHeight:'100px',display:showMoreStyle,cursor:'pointer'}} onClick={()=>this.moreNews()}>
+                                    <button className={homeStyle.button+' '+homeStyle.buttonThreed+' '+homeStyle.buttonCaution+' '+homeStyle.buttonRounded}> more</button>
                                 </div>
-                                <div style={{textAlign:'center',height:'100px',lineHeight:'100px'}}>
+                                <div style={{textAlign:'center',height:'100px',lineHeight:'100px',display:showMoreStyle}}>
                                     2017
                                 </div>
+
                             </div>
                             </div>
                         }
                     </Animate>
+
                 </div>
             )
     }

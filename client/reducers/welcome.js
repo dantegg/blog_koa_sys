@@ -1,7 +1,7 @@
 /**
  * Created by dantegg on 16-12-30.
  */
-import {WELCOME,DELETE_BLOG,PAGE_CHANGE} from '../actions/home'
+import {WELCOME,DELETE_BLOG,PAGE_CHANGE,GET_MORE_NEWS} from '../actions/home'
 
 
 export function welcomeInfo(state =[],action) {
@@ -12,6 +12,8 @@ export function welcomeInfo(state =[],action) {
             return action.list
         case PAGE_CHANGE:
             return action.list
+        case GET_MORE_NEWS:
+            return state.concat(action.list)
         default:
             return state
     }

@@ -8,19 +8,27 @@ class News{
         this.tagModel = tagModel
     }
 
-    async getNews(){
-        const news = await this.blogModel.findNews()
+    async getNews(page=1){
+        const news = await this.blogModel.findNews(page)
         return Promise.all(news.map(x=>this.normalized(x)))
     }
 
     async normalized(x){
         let tags =[]
-        if(x.tagId !== undefined){
-            x.tagId.split(',').map(async(x)=>{
-                let zzz=  await this.tagModel.findTagById(x)
-                tags.push(zzz)
-            })
+        //console.log(x.tagId)
+        if(Object.prototype.toString.call(x.tagId) !== "[object String]"){
+            if(x.tagId !== undefined){
+                x.tagId.map(async(x)=>{
+                    let zzz=  await this.tagModel.findTagById(x)
+                    tags.push(zzz)
+                })
+            }
+        }else{
+           // tags.push(x.tagId)
+            let tagName = await this.tagModel.findTagById(x.tagId)
+            tags.push(tagName)
         }
+
         return{
             title:x.title,
             content:x.content,

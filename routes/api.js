@@ -75,7 +75,6 @@ router.post('/createTag',async(ctx)=>{
         tagName:body.tagName
     }
     let result = await models.tag.create(tag)
-    //console.log('create new tag',!!result)
     if(!!result){
         ctx.body={
             success:true
@@ -96,15 +95,13 @@ router.post('/findBlogByPage',async(ctx)=>{
     }else{
         let record = await models.blog.find({_id:body.id})
         findTime = record.createTime
-        //console.log('find record',record)
     }
-    //console.log('findTime',findTime)
     let blogs = await models.blog.findBlogs(findTime).toArray()
     ctx.body = await services.news.normalizedList(blogs)
 })
 
 
-//a simple pagination
+//分页查询博客 a simple pagination
 router.post('/findBlogBySimplePagination',async(ctx)=>{
     const body = ctx.request.body
     let currentPage = body.currentPage

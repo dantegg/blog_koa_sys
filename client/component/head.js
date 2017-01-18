@@ -86,7 +86,9 @@ export default class Head extends Component{
         return(
             <Row style={{height:'80px'}}>
                 <Col xs={8} sm={8} md={8} lg={8} className={test.homeHeadLogo}>
-                    <div onClick={()=>this.logoClick()}>Dantegg's world</div>
+                    <div onClick={()=>this.logoClick()}>
+                        <img src="/static/logo.png" style={{height:'50px'}} />
+                    </div>
                 </Col>
                 <Col xs={16} sm={16} md={16} lg={16} className={test.homeHeadLogin}>
                     <Button type="ghost" onClick={btnAction.bind(this)}>{btnTxt}</Button>

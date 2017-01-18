@@ -4,8 +4,6 @@
 import React from 'react'
 import { match } from 'react-router'
 import { renderToString } from 'react-dom/server'
-//import { Provider } from 'react-redux'
-//import Head from '../client/component/head'
 import route from '../client/route'
 import renderCtrl from './severRender/server'
 

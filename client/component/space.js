@@ -55,8 +55,6 @@ export default class Space extends Component{
         let comp = this
         let title = this.refs.title.refs.input.value
         let content = this.refs.editor.state.content
-        console.log('title',title)
-        console.log('content',content)
         if(title===null||content===null){
             notification.error({
                 message:'错误',
@@ -65,7 +63,7 @@ export default class Space extends Component{
             return
         }
 
-        console.log('this state',this.state.selectedTags)
+        //console.log('this state',this.state.selectedTags)
 
         let fetchData = FETCH_POST
         fetchData.body=queryString.stringify({
@@ -123,7 +121,7 @@ export default class Space extends Component{
     }
 
     render(){
-        console.log('space',this.props)
+       //console.log('space',this.props)
         const { selectedTags } = this.state;
         const tagsFromServer = this.props.allTags
         return(

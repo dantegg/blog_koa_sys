@@ -14,9 +14,7 @@ class blogTag extends MongoBaseModel{
     }
 
     async findTagById(id){
-        //console.log('tag id',id)
         let name = await this.get(id)
-        console.log('name',name.tagName)
         return name.tagName
     }
 

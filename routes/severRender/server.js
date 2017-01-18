@@ -11,15 +11,10 @@ const services = require('../../services')
 
 export default async (ctx, next, renderProps) => {
     const route = renderProps.routes[renderProps.routes.length - 1]
-    //let isLogin = !!ctx.session.userId
-    //const news = await services.news.getNews()
-    //console.log('news========',news)
     let store = configureStore({
-        //welcomeInfo:news,
         isLogin:!!ctx.session.userId
     })
     let prefetchTasks = []
-    //console.log('componet',renderProps.components.length)
     for (let component of renderProps.components) {
 
         if (component && component.WrappedComponent && component.WrappedComponent.fetch) {
@@ -35,7 +30,6 @@ export default async (ctx, next, renderProps) => {
 
     if(renderProps.location.pathname === '/home'){
         const news = await services.news.getNews()
-        //console.log('news========',news)
         store = configureStore({
             welcomeInfo:news,
             isLogin:!!ctx.session.userId
@@ -45,13 +39,10 @@ export default async (ctx, next, renderProps) => {
     let re = /\/blog\/./
     if(re.test(renderProps.location.pathname)){
         let blogId = renderProps.location.pathname.substr(6)
-        //console.log('server render blog',blogId)
         let checkId = await models.blog.checkId(blogId)
-        //console.log('???',checkId)
         if(checkId){
             const getOneBlog = await models.blog.get(blogId)
             let oneBlog = await services.news.normalized(getOneBlog)
-            //console.log('blog is',getOneBlog)
             store = configureStore({
                 isLogin:!!ctx.session.userId,
                 oneBlog:oneBlog
@@ -62,14 +53,8 @@ export default async (ctx, next, renderProps) => {
 
     }
 
-    // if(renderProps.location.pathname === '/login'){
-    //     let count = await models.user.getUserCount()
-    //     console.log('count',count)
-    // }
-
-
     if(renderProps.location.pathname === '/manage'){
-        console.log('enter manage')
+       //console.log('enter manage')
         const initBlogs = await models.blog.findBlogByPage(1,10
         )
         const blogCount = await models.blog.findBlogSize()
@@ -82,22 +67,6 @@ export default async (ctx, next, renderProps) => {
             blogCount:blogCount
         })
     }
-    //     let newsArray = []
-    //     await models.blog.findNews().toArray((err,items)=>{
-    //         console.log('22222223356666')
-    //
-    //         items.map(x=>{
-    //             newsArray.push({
-    //                 "title":x.title,
-    //                 "content":x.content,
-    //                 "createTime":x.createTime
-    //             })
-    //         })//console.log(items)
-    //
-    //     })
-    //     console.log('nnnnnnnnnnnnnnnnnnnnn')
-
-    // }
 
     await Promise.all(prefetchTasks)
     await ctx.render('home', {

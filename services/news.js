@@ -1,9 +1,6 @@
 /**
  * Created by dantegg on 2017/1/7.
  */
-//const models = require('../../models')
-
-
 
 class News{
     constructor(blogModel,tagModel){
@@ -43,17 +40,6 @@ class News{
     normalizedTagList(list){
         return Promise.all(list.map(x=>this.normalizeTag(x)))
     }
-
-    // async normalizedWithId(x){
-    //     let newdate = new Date()
-    //     newdate.setTime(x.createTime)
-    //     return{
-    //         title:x.title,
-    //         content:x.content,
-    //         createTime:x.createTime,
-    //         id:x._id
-    //     }
-    // }
 
     normalizedList(list){
         return Promise.all(list.map(x=>this.normalized(x)))

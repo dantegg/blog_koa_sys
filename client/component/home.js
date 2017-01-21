@@ -27,6 +27,7 @@ export default class Test extends Component{
         this.setState({
             showSlogan:false
         })
+        sessionStorage.setItem('hideSlogan',true)
     }
 
     go2blog(id){

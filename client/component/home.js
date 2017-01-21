@@ -21,6 +21,7 @@ export default class Test extends Component{
         }
     }
     componentDidMount(){
+        console.log('session storage',sessionStorage.getItem('hideSlogan'))
     }
 
     onEnter(){

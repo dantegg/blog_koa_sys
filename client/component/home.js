@@ -7,6 +7,7 @@ import {Button,Icon,Tag} from 'antd'
 import Animate from 'rc-animate'
 import Head from './head'
 import marked from 'marked'
+import {browserHistory} from 'react-router'
 import '../css/fade.css'
 
 export default class Test extends Component{
@@ -33,8 +34,9 @@ export default class Test extends Component{
     }
 
     go2blog(id){
-        console.log('blog',id)
-        window.location.href='/blog/'+id
+        //console.log('blog',id)
+        //window.location.href='/blog/'+id
+        browserHistory.push('/blog/'+id)
     }
 
     moreNews(){

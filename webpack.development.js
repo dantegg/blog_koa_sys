@@ -25,7 +25,9 @@ module.exports = {
   },
     externals: {
         'react': 'React',
-        'react-dom': 'ReactDOM'
+        'react-dom': 'ReactDOM',
+        'redux': 'Redux',
+        'react-redux': 'ReactRedux'
     },
   // resolve: {
   //   modulesDirectories: ['node_modules', path.join(__dirname, '/node_modules')],

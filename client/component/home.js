@@ -35,8 +35,8 @@ export default class Test extends Component{
 
     go2blog(id){
         //console.log('blog',id)
-        //window.location.href='/blog/'+id
-        browserHistory.push('/blog/'+id)
+        window.location.href='/blog/'+id
+        //browserHistory.push('/blog/'+id)
     }
 
     moreNews(){

@@ -5,7 +5,7 @@ import React,{Component} from 'react'
 import {Row,Col,Button} from 'antd'
 import { browserHistory } from 'react-router'
 import 'antd/dist/antd.css'
-import test from '../css/home.css'
+import '../css/home.css'
 
 
 const FETCH_GET = {
@@ -85,12 +85,12 @@ export default class Head extends Component{
         }
         return(
             <Row style={{height:'80px'}}>
-                <Col xs={8} sm={8} md={8} lg={8} className={test.homeHeadLogo}>
+                <Col xs={8} sm={8} md={8} lg={8} className="home-head-logo">
                     <div onClick={()=>this.logoClick()}>
                         <img src="/static/logo.png" style={{height:'50px'}} />
                     </div>
                 </Col>
-                <Col xs={16} sm={16} md={16} lg={16} className={test.homeHeadLogin}>
+                <Col xs={16} sm={16} md={16} lg={16} className="home-head-login">
                     <Button type="ghost" onClick={btnAction.bind(this)}>{btnTxt}</Button>
                 </Col>
             </Row>

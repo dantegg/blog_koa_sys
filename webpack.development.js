@@ -50,15 +50,16 @@ module.exports = {
         }
       }, {
         test: /\.css$/,
+            loader: 'style!css'
         //loader: 'style!css'
             //loader: ExtractTextPlugin.extract("style-loader", "css-loader")
             //test: /\.css$/,
             //loader: ExtractTextPlugin.extract('style', 'css?modules&camelCase&importLoaders=1&localIdentName=[hash:base64:8]')
-            loaders: [
-                'style',
-                'css?modules&camelCase&importLoaders=1&localIdentName=[name]__[local]__[hash:base64:8]',
-                'sass'
-            ]
+            // loaders: [
+            //     'style',
+            //     'css?modules&camelCase&importLoaders=1&localIdentName=[name]__[local]__[hash:base64:8]',
+            //     'sass'
+            // ]
         }, {
         test: /\.less$/,
         include: includes,

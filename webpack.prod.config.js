@@ -14,9 +14,10 @@ module.exports = {
         'vendor'    : vendorArray,
     },
     output: {
-        path: path.join(__dirname, 'dist'),
+        path: path.join(__dirname, 'public'),
         publicPath: '/static/',
-        filename: "[name].[chunkhash:8].js",
+        filename: "[name].js",
+        //filename: "[name].[chunkhash:8].js",
         library: '[name]',
         chunckFilename:'chunk.[name].[chunkhash:8].js'
     },
@@ -24,7 +25,7 @@ module.exports = {
         loaders: [
             {
                 test: /\.css$/,
-                loader: ExtractTextPlugin.extract('style', 'css?modules&camelCase&importLoaders=1&localIdentName=[name]__[local]__[hash:base64:8]')
+                loader: ExtractTextPlugin.extract('css')
             },
             { test: /\.less$/, loader: 'style-loader!css!less' },
             { test: /\.png$/, loader: "url-loader?mimetype=image/png" },
@@ -79,7 +80,7 @@ module.exports = {
         }),
         new webpack.optimize.OccurenceOrderPlugin(),
         new HtmlWebpackPlugin({
-            filename: './views/prod/home.html',
+            filename: '../views/prod/home.html',
             template: './views/tpl/home.tpl.html'
         }),
     ]

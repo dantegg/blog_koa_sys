@@ -4,10 +4,10 @@
 import React,{Component} from 'react'
 import Head from './head'
 import {Tag} from 'antd'
-import ReactMarkdown from 'react-markdown'
+//import ReactMarkdown from 'react-markdown'
 import marked from 'marked'
 
-import blogStyle from '../css/blog.css'
+import '../css/blog.css'
 
 class Blog extends Component{
     constructor(props){
@@ -18,11 +18,11 @@ class Blog extends Component{
     }
 
     componentWillReceiveProps(nextProps){
-        console.log('next',nextProps)
+        //console.log('next',nextProps)
     }
 
     render(){
-        console.log('this props',this.props)
+        //console.log('this props',this.props)
         if(this.props.oneBlog ===undefined){
              return(
                  <div>!!</div>
@@ -31,7 +31,7 @@ class Blog extends Component{
         return(
             <div>
                 <Head/>
-                <div className={blogStyle.blogMain}>
+                <div className="blog-main">
                     <h1>{this.props.oneBlog.title}</h1>
                     <div style={{color:"#919191"}}>{this.props.oneBlog.createTime}</div>
                     <div>{this.props.oneBlog.tags.map(t=>{

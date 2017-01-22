@@ -53,7 +53,8 @@ router.get('/user',async(ctx)=>{
 
 router.post('/postblog',async (ctx)=>{
     const body = ctx.request.body
-    console.log('body',body)
+    //console.log('body',body)
+
     const blog = {
         title:body.title,
         content:body.content,

@@ -4,8 +4,8 @@
 import React,{Component} from 'react'
 import Head from './head'
 import {Button,Input,Icon,Table} from 'antd'
-import {browserHistory} from 'react-router'
-import manageStyle from '../css/manage.css'
+//import {browserHistory} from 'react-router'
+import '../css/manage.css'
 //import {FETCH_POST} from '../util/fetchConfig'
 
 class Manage extends Component{
@@ -17,8 +17,8 @@ class Manage extends Component{
     }
 
     componentWillReceiveProps(nextProps){
-        console.log('next',nextProps)
-        console.log('now',this.state)
+        //console.log('next',nextProps)
+        //console.log('now',this.state)
     }
 
 
@@ -83,10 +83,10 @@ class Manage extends Component{
         return(
             <div>
                 <Head/>
-                <div className={manageStyle.goUser}>
+                <div className="go-user">
                     <Button type='ghost' icon="user" shape="circle" onClick={this.go2user.bind(this)}/>
                 </div>
-                <div className={manageStyle.manageTable}>
+                <div className="manage-table">
                     <Table rowKey={
                         record => {
                             //console.log(record)

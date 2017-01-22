@@ -6,7 +6,7 @@ import {MarkdownEditor} from 'react-markdown-editor'
 import Head from './head'
 import {Button,Input,notification,Tag,Modal} from 'antd'
 import {browserHistory} from 'react-router'
-import spaceStyle from '../css/space.css'
+import '../css/space.css'
 import queryString from 'query-string'
 
 const CheckableTag = Tag.CheckableTag
@@ -113,6 +113,9 @@ export default class Space extends Component{
         let newTagName = this.refs.newTag.refs.input.value
         //console.log('new tag',newTagName)
         this.props.addTag(newTagName)
+        this.setState({
+            modalVisible:false
+        })
     }
 
     go2Manage(){
@@ -127,17 +130,17 @@ export default class Space extends Component{
         return(
             <div style={{height:'100%'}}>
                 <Head currentPath={this.props.location.pathname}/>
-                <div className={spaceStyle.spaceManage}><Button type="ghost" shape="circle" icon="setting" onClick={this.go2Manage.bind(this)} /></div>
-                <div className={spaceStyle.spacePart}>
-                    <div className={spaceStyle.spaceTitle}>发个新日志吧</div>
-                    <div className={spaceStyle.spaceEditorTitle}>
+                <div className="space-manage"><Button type="ghost" shape="circle" icon="setting" onClick={this.go2Manage.bind(this)} /></div>
+                <div className="space-part">
+                    <div className="space-title">发个新日志吧</div>
+                    <div className="space-editor-title">
                         <h1>标题</h1>
                         <Input style={{width:'100%'}} ref="title"/>
                     </div>
                     <div style={{width:'800px',margin:'0 auto',fontWeight:'bold',fontSize:'1rem'}}>
                         <h1>正文</h1>
                     </div>
-                    <div className={spaceStyle.spaceEditor}>
+                    <div className="space-editor">
                         <MarkdownEditor initialContent="text" iconsSet="font-awesome" ref="editor"/>
                     </div>
                     <div style={{paddingLeft:"20px",paddingTop:"20px"}}>选择一个标签</div>
@@ -156,7 +159,7 @@ export default class Space extends Component{
                     <div style={{paddingLeft:"20px"}}>
                         <Button type="ghost" size="small" onClick={()=>this.openAddTagModal()}>+添加标签</Button>
                     </div>
-                    <div className={spaceStyle.spacePost}>
+                    <div className="space-post">
                         <Button type="primary" onClick={this.postBlog.bind(this)}>post</Button>
                     </div>
                 </div>

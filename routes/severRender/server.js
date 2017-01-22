@@ -36,22 +36,22 @@ export default async (ctx, next, renderProps) => {
         })
     }
 
-    // let re = /\/blog\/./
-    // if(re.test(renderProps.location.pathname)){
-    //     let blogId = renderProps.location.pathname.substr(6)
-    //     let checkId = await models.blog.checkId(blogId)
-    //     if(checkId){
-    //         const getOneBlog = await models.blog.get(blogId)
-    //         let oneBlog = await services.news.normalized(getOneBlog)
-    //         store = configureStore({
-    //             isLogin:!!ctx.session.userId,
-    //             oneBlog:oneBlog
-    //         })
-    //     }else{
-    //         ctx.redirect('/',{})
-    //     }
-    //
-    // }
+    let re = /\/blog\/./
+    if(re.test(renderProps.location.pathname)){
+        let blogId = renderProps.location.pathname.substr(6)
+        let checkId = await models.blog.checkId(blogId)
+        if(checkId){
+            const getOneBlog = await models.blog.get(blogId)
+            let oneBlog = await services.news.normalized(getOneBlog)
+            store = configureStore({
+                isLogin:!!ctx.session.userId,
+                oneBlog:oneBlog
+            })
+        }else{
+            ctx.redirect('/',{})
+        }
+
+    }
 
     if(renderProps.location.pathname === '/manage'){
        //console.log('enter manage')

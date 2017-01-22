@@ -4,7 +4,7 @@
   "description": "a new koa project",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build":"webpack --progress --colors --config webpack.prod.config.js"
+    "build": "webpack --progress --colors --config webpack.prod.config.js"
   },
   "repository": {
     "type": "git",
@@ -54,6 +54,7 @@
     "json-loader": "^0.5.4",
     "koa-bodyparser": "^3.2.0",
     "koa-compose": "^3.2.1",
+    "koa-compress": "^2.0.0",
     "koa-convert": "^1.2.0",
     "koa-json": "^2.0.2",
     "koa-logger": "^2.0.0",

@@ -29,8 +29,16 @@ require('asset-require-hook')({
 })
 const fs = require('fs')
 const path = require('path')
+const compress = require('koa-compress')
 const Koa = require('koa')
 const app = new Koa()
+app.use(compress({
+    filter: function (content_type) {
+        return /text/i.test(content_type)
+    },
+    threshold: 2048,
+    flush: require('zlib').Z_SYNC_FLUSH
+}))
 const session = require('koa-session')
 
 //const middleware = require('./middlewares')

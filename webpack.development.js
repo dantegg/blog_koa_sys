@@ -23,6 +23,10 @@ module.exports = {
     chunkFilename: '[name].chunk.js',
     publicPath: '/zzz/'
   },
+    externals: {
+        'react': 'React',
+        'react-dom': 'ReactDOM'
+    },
   // resolve: {
   //   modulesDirectories: ['node_modules', path.join(__dirname, '/node_modules')],
   //   extensions: ['', '.js', '.jsx']

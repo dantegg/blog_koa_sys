@@ -6,7 +6,7 @@ var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-var vendorArray= ['react','react-dom','redux','react-redux']
+var vendorArray= ['redux','react-redux']
 
 module.exports = {
     entry: {
@@ -20,6 +20,10 @@ module.exports = {
         //filename: "[name].[chunkhash:8].js",
         library: '[name]',
         chunckFilename:'chunk.[name].[chunkhash:8].js'
+    },
+    externals: {
+        'react': 'React',
+        'react-dom': 'ReactDOM'
     },
     module: {
         loaders: [

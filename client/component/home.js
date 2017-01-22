@@ -17,18 +17,24 @@ export default class Test extends Component{
         super(props)
         this.state={
             showSlogan:true,
-            currentPage:1
+            currentPage:1,
+            hideSlogan:'block'
         }
     }
     componentDidMount(){
-        console.log('session storage',sessionStorage.getItem('hideSlogan'))
+        if(window.sessionStorage.getItem('hideSlogan') === 'true'){
+            this.setState({
+                showSlogan:false,
+                hideSlogan:'none'
+            })
+        }
     }
 
     onEnter(){
         this.setState({
             showSlogan:false
         })
-        sessionStorage.setItem('hideSlogan',true)
+        window.sessionStorage.setItem('hideSlogan',true)
     }
 
     go2blog(id){
@@ -54,7 +60,7 @@ export default class Test extends Component{
                     <Head currentPath={this.props.location.pathname}/>
                     <Animate transitionAppear transitionName="fade">
                         {this.state.showSlogan ?
-                            <div className={homeStyle.homeSlogan} key="6">
+                            <div className={homeStyle.homeSlogan} key="6" style={{display:this.state.hideSlogan}}>
                                 <div key="1">吾生也有涯，而知也无涯，以有涯随无涯，殆已</div>
                                 <div style={{textAlign:'right'}} key="2">——— 庄子</div>
                                 <div style={{textAlign:'center',marginTop:'20px'}}>

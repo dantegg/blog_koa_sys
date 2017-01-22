@@ -10,7 +10,7 @@ var vendorArray= ['react','react-dom','redux','react-redux']
 
 module.exports = {
     entry: {
-        'bundle'     : path.join(__dirname,'/client/client.js'),
+        'bundle'     : path.join(__dirname,'./client/client.js'),
         'vendor'    : vendorArray,
     },
     output: {
@@ -42,7 +42,7 @@ module.exports = {
                 exclude: /node_modules/,
                 loader: "babel-loader",
                 query: {
-                    presets:['react','es2015']
+                    presets:['react','es2015','stage-0']
                 }
             },
             {
@@ -78,11 +78,6 @@ module.exports = {
             }
         }),
         new webpack.optimize.OccurenceOrderPlugin(),
-        new webpack.DefinePlugin({
-            "process.env": {
-                NODE_ENV: JSON.stringify("production")
-            }
-        }),
         new HtmlWebpackPlugin({
             filename: './views/prod/home.html',
             template: './views/tpl/home.tpl.html'

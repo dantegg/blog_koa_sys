@@ -3,8 +3,8 @@
  */
 import {bindActionCreators} from  'redux'
 import {connect} from 'react-redux'
-import * as blogActions from '../actions/blog'
-import Blog from '../component/blog'
+import * as blogActions from '../../actions/blog'
+import Blog from '../../component/blog'
 
 function mapStateToProps(state) {
     return{

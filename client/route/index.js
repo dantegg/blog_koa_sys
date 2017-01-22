@@ -3,13 +3,37 @@
  */
 import App from '../container/app'
 import React from 'react'
-import Login from '../container/login'
-import Home from '../container/home'
-import Space from '../container/space'
-import Manage from '../container/manage'
-import Blog from '../container/blog'
+import Login from '../container/login/login'
+import Home from '../container/home/home'
+import Space from '../container/space/space'
+import Manage from '../container/manage/manage'
+import Blog from '../container/blog/blog'
 import {Router,Route,browserHistory,IndexRedirect} from 'react-router'
 
+//TODO 按需加载-待解决
+// const rootRoute = {
+//     childRoutes: [ {
+//         path: '/',
+//         component: require('../container/app'),
+//         indexRoute: {
+//             getComponent(nextState, cb) {
+//                 require.ensure([], (require) => {
+//                     cb(null, require('../container/home'))
+//                 }, 'home')
+//             },
+//         },
+//         childRoutes: [
+//             require('../container/login'),
+//             require('../container/home'),
+//             require('../container/space'),
+//             require('../container/manage'),
+//             require('../container/blog')
+//         ]
+//     } ]
+// }
+// export default (
+//     <Router history={browserHistory} routes={rootRoute}  />
+// )
 
 export default (
     <Router history={browserHistory}>
@@ -23,34 +47,3 @@ export default (
         </Route>
     </Router>
 )
-
-
-// if (typeof require.ensure !== 'function') {
-//     require.ensure = function(dependencies, callback) {
-//         callback(require)
-//     }
-// }
-//
-// const routes = {
-//     childRoutes: [{
-//         path: '/',
-//         component: require('../component/home'),
-//         indexRoute: {
-//             getComponent(nextState, callback) {
-//                 require.ensure([], require => {
-//                     callback(null, require('../component/test'))
-//                 }, 'home')
-//             }
-//         },
-//         childRoutes: [{
-//             path: 'space',
-//             getComponent(nextState, callback) {
-//                 require.ensure([], require => {
-//                     callback(null, require('../component/space'))
-//                 }, 'space')
-//             }
-//         }]
-//     }]
-// }
-//
-// export default routes

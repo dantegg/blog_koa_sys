@@ -1,16 +1,15 @@
 /**
- * Created by dantegg on 2017/1/8.
+ * Created by dantegg on 2017/1/7.
  */
 import {bindActionCreators} from  'redux'
 import {connect} from 'react-redux'
-import * as testActions from '../actions/home'
-import Manage from '../component/manage'
+import * as testActions from '../../actions/home'
+import Home from '../../component/home'
 
 function mapStateToProps(state) {
     return{
         welcomeInfo:state.welcomeInfo,
-        isLogin:state.isLogin,
-        blogCount:state.blogCount
+        isLogin:state.isLogin
     }
 }
 
@@ -18,4 +17,4 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators(testActions,dispatch)
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Manage)
+export default connect(mapStateToProps,mapDispatchToProps)(Home)

@@ -3,8 +3,8 @@
  */
 import {bindActionCreators} from  'redux'
 import {connect} from 'react-redux'
-import * as testActions from '../actions/home'
-import Login from '../component/login'
+import * as testActions from '../../actions/home'
+import Login from '../../component/login'
 
 function mapStateToProps(state) {
     return{

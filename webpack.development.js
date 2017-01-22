@@ -66,8 +66,8 @@ module.exports = {
             // ]
         }, {
         test: /\.less$/,
-        include: includes,
-        loader: 'style!css!less!postcss'
+        //include: includes,
+        loader: 'style!css!less'
       },
       { test: /\.woff2?$/, loader: 'url?limit=10000&minetype=application/font-woff' },
       { test: /\.ttf$/, loader: 'url?limit=10000&minetype=application/octet-stream' },

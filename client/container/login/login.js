@@ -18,3 +18,5 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(Login)
+
+//module.exports = connect(mapStateToProps,mapDispatchToProps)(Login)

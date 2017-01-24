@@ -19,3 +19,5 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(Space)
+
+//module.exports = connect(mapStateToProps,mapDispatchToProps)(Space)

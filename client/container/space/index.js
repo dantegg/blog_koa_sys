@@ -5,7 +5,7 @@ module.exports = {
     path: 'space',
     getComponent(nextState, cb) {
         require.ensure([], (require) => {
-            cb(null, require('./space'))
+            cb(null, require('./space').default)
         },'space')
     }
 }

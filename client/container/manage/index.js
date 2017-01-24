@@ -5,7 +5,7 @@ module.exports = {
     path: 'manage',
     getComponent(nextState, cb) {
         require.ensure([], (require) => {
-            cb(null, require('./manage'))
+            cb(null, require('./manage').default)
         },'manage')
     }
 }

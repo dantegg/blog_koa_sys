@@ -45,6 +45,9 @@ const mount = require('koa-mount')
 const json = require('koa-json')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
+const models = require('./models')
+
+
 const devMiddlewareInstance = devMiddleware(compiler,{
     noInfo: true,
     // watchOptions: {
@@ -72,9 +75,9 @@ compiler.plugin('emit', (compilation, callback) => {
 
     Object.keys(assets).forEach(key => {
         if (key.match(/\.html$/)) {
-            console.log('sss',key)
+            //console.log('sss',key)
             file = path.resolve(__dirname, key)
-            console.log('file',file)
+            //console.log('file',file)
             data = assets[key].source()
             fs.writeFileSync(file, data)
         }
@@ -102,8 +105,8 @@ app.use(async (ctx,next)=>{
     await next()
     const ms = new Date() -start
     console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
-})
 
+})
 
 
 app.use(bodyparser())

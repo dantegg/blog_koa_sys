@@ -8,7 +8,13 @@ class UserModel extends MongoBaseModel{
         //console.log('collection',collection)
         this.collection = collection
         //console.log('size',this.collection.count().toNumber())
-        this.collection.createIndex({email:1},{unique:true}).then()
+        this.collection.createIndex({email:1},{unique:true}).then(async  ()=> {
+            let zz = await this.getUserCount()
+            //console.log('ss',zz)
+            if(zz===0){
+                this.create({'email':'scott','password':'123456'})
+            }
+        })
     }
 
     // create(obj){

@@ -2,30 +2,10 @@
  * Created by dantegg on 2016/12/20.
  */
 'use strict'
-process.env.NODE_ENV = 'development'
-console.log('waiting for webpacking')
-//require('babel-polyfill')
+process.env.NODE_ENV = 'production'
 require('babel-register')({
     presets: ['es2015', 'react', 'stage-0'],
     plugins: ['add-module-exports']
-})
-// Css require hook
-require('css-modules-require-hook')({
-    extensions: ['.css'],
-    preprocessCss: (data, filename) =>
-        require('node-sass').renderSync({
-            data,
-            file: filename
-        }).css,
-    camelCase: true,
-    //generateScopedName: '[local]'
-    generateScopedName: '[name]__[local]__[hash:base64:8]'
-})
-
-require('asset-require-hook')({
-    extensions:['jpg','jpeg','png','gif','svg','tif','tiff','webp'],
-    name:'/build/[name].[ext]',
-    limit:1000
 })
 const fs = require('fs')
 const path = require('path')

@@ -14,7 +14,12 @@ import {Router,Route,browserHistory,IndexRedirect} from 'react-router'
 // const rootRoute = {
 //     childRoutes: [ {
 //         path: '/',
-//         component: require('../container/app'),
+//         // component: require('../container/app'),
+//         getComponent(nextState, cb) {
+//             require.ensure([], (require) => {
+//                 cb(null, require('../container/app').default)
+//             }, 'app')
+//         },
 //         indexRoute: {
 //             getComponent(nextState, cb) {
 //                 require.ensure([], (require) => {

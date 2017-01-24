@@ -5,7 +5,7 @@ module.exports = {
     path: 'home',
     getComponent(nextState, cb) {
         require.ensure([], (require) => {
-            cb(null, require('./home'))
+            cb(null, require('./home').default)
         },'home')
     }
 }

@@ -10,7 +10,7 @@ router.prefix('/api')
 router.post('/login',async(ctx)=>{
     const body = ctx.request.body
     const user = await models.user.getByEmail(body.email)
-    console.log("user",!user)
+    //console.log("user",!user)
     if(!user){
         console.log("user",!user)
         //ctx.status = 301
@@ -29,7 +29,7 @@ router.post('/login',async(ctx)=>{
         return
     }
     ctx.session.userId = user._id
-    console.log('user is',body.email,'login time is',new Date())
+    //console.log('user is',body.email,'login time is',new Date())
     ctx.body={
         success:true,
         msg:'login success'

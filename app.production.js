@@ -7,6 +7,24 @@ require('babel-register')({
     presets: ['es2015', 'react', 'stage-0'],
     plugins: ['add-module-exports']
 })
+
+require('css-modules-require-hook')({
+    extensions: ['.css'],
+    preprocessCss: (data, filename) =>
+        require('node-sass').renderSync({
+            data,
+            file: filename
+        }).css,
+    camelCase: true,
+    //generateScopedName: '[local]'
+    generateScopedName: '[name]__[local]__[hash:base64:8]'
+})
+
+require('asset-require-hook')({
+    extensions:['jpg','jpeg','png','gif','svg','tif','tiff','webp'],
+    name:'/build/[name].[ext]',
+    limit:1000
+})
 const fs = require('fs')
 const path = require('path')
 const compress = require('koa-compress')

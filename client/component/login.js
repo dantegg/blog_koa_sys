@@ -2,7 +2,7 @@
  * Created by dantegg on 17-1-3.
  */
 import React,{Component} from 'react'
-import {Form, Icon, Input, Button, Checkbox,notification} from 'antd'
+import {Form, Icon, Input, Button,notification} from 'antd'
 import { browserHistory } from 'react-router'
 import Head from './head'
 const FormItem = Form.Item;

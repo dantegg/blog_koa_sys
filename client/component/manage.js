@@ -3,7 +3,7 @@
  */
 import React,{Component} from 'react'
 import Head from './head'
-import {Button,Input,Icon,Table} from 'antd'
+import {Button,Table} from 'antd'
 //import {browserHistory} from 'react-router'
 import '../css/manage.css'
 //import {FETCH_POST} from '../util/fetchConfig'

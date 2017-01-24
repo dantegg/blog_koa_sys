@@ -6,17 +6,8 @@ import {Row,Col,Button} from 'antd'
 import { browserHistory } from 'react-router'
 import 'antd/dist/antd.css'
 import '../css/home.css'
+import {FETCH_GET} from '../util/fetchConfig'
 
-
-const FETCH_GET = {
-    method:'get',
-    //body:paydata,
-    credentials: 'include',
-    headers:{
-        'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8',
-        'Accept': 'application/json, text/javascript,*/*;q=0.01'
-    }
-}
 
 export default class Head extends Component{
     constructor(props){

@@ -6,15 +6,7 @@ import {Form, Icon, Input, Button,notification} from 'antd'
 import { browserHistory } from 'react-router'
 import Head from './head'
 const FormItem = Form.Item;
-
-const FETCH_POST = {
-    method:'post',
-    credentials: 'include',
-    headers:{
-        'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8',
-        'Accept': 'application/json, text/plain,*/*;q=0.01'
-    },
-}
+import {FETCH_POST} from '../util/fetchConfig'
 
 class Login extends Component{
     constructor(props){

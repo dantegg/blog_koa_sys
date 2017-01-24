@@ -8,18 +8,8 @@ import {Button,Input,notification,Tag,Modal} from 'antd'
 import {browserHistory} from 'react-router'
 import '../css/space.css'
 import queryString from 'query-string'
-
+import {FETCH_POST} from '../util/fetchConfig'
 const CheckableTag = Tag.CheckableTag
-
-const FETCH_POST = {
-    method:'post',
-    credentials: 'include',
-    headers:{
-        'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8',
-        'Accept': 'application/json, text/plain,*/*;q=0.01'
-    },
-}
-
 
 export default class Space extends Component{
     constructor(props){

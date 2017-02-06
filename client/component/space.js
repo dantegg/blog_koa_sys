@@ -65,19 +65,30 @@ export default class Space extends Component{
         //fetchData.body=`title=${title}&content=${content}`
         fetch('/api/postblog',fetchData).then(res=>{
             if(res.ok){
-                console.log(res)
-                if(res.status === 200){
-                    notification.success({
-                        message:'成功',
-                        description:'发布博客成功'
-                    })
-                    comp.setState({
-                        reRender:!comp.state.reRender,
-                        selectedTags:[]
-                    })
-                    comp.refs.title.refs.input.value = ''
-                    document.getElementsByTagName("textarea")[0].value=''
-                }
+                res.json().then(result=>{
+                    if(!!result.success){
+                        if(!result.success){
+                            notification.error({
+                                message:'失败',
+                                description:'发布博客失败'
+                            })
+                        }
+                    }else{
+                        if(res.status === 200){
+                            notification.success({
+                                message:'成功',
+                                description:'发布博客成功'
+                            })
+                            comp.setState({
+                                reRender:!comp.state.reRender,
+                                selectedTags:[]
+                            })
+                            comp.refs.title.refs.input.value = ''
+                            document.getElementsByTagName("textarea")[0].value=''
+                        }
+                    }
+                })
+
             }
         })
     }

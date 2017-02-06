@@ -52,6 +52,12 @@ router.get('/user',async(ctx)=>{
 })
 
 router.post('/postblog',async (ctx)=>{
+    if(!ctx.session.userId){
+        ctx.body={
+            success:false
+        }
+        return
+    }
     const body = ctx.request.body
     //console.log('body',body)
 
@@ -77,6 +83,13 @@ router.get('/getAllTags',async (ctx)=>{
 })
 
 router.post('/createTag',async(ctx)=>{
+    console.log(ctx.session.userId)
+    if(!ctx.session.userId) {
+        ctx.body={
+            success:false
+        }
+        return
+    }
     const body = ctx.request.body
     const tag = {
         tagName:body.tagName
@@ -125,6 +138,12 @@ router.post('/findBlogBySimplePagination',async(ctx)=>{
 
 //删除博客 delete blog
 router.post('/deleteblog',async(ctx)=>{
+    if(!ctx.session.userId){
+        ctx.body={
+            success:false
+        }
+        return
+    }
     //console.log('sss',ctx.request.body)
     let body = ctx.request.body
     let id = body.id

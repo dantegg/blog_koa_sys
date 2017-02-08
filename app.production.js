@@ -88,7 +88,7 @@ app.on('error',function (err,ctx) {
 
 
 
-app.listen(3000,function () {
+app.listen(80,function () {
     console.log('app started,http://localhost:3000,ctrl-c to terminate')
 })
 

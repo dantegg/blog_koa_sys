@@ -71,7 +71,7 @@ app.on('error',function (err,ctx) {
 
 
 app.listen(3000,function () {
-    console.log('app started,http://localhost:3000,ctrl-c to terminate')
+    console.log('app started,http://localhost:80,ctrl-c to terminate')
 })
 
 module.exports = app

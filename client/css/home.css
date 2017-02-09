@@ -48,6 +48,7 @@
     position:relative;
 }
 
+
 .home-news-item:before, .home-news-item:after{
     content:'';
     position:absolute;
@@ -66,9 +67,13 @@
 
 .home-news-item-markdown{
     overflow: hidden;
-    height:70%
+    height:70%;
+
 }
 
+.home-news-item-markdown:before{
+    box-shadow: 0 -100px 1px #000 inset;
+}
 
 .button {
     color: #666;

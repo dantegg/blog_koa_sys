@@ -6,12 +6,9 @@ var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-var vendorArray= ['react-redux','redux']
-
 module.exports = {
     entry: {
         'bundle'     : path.join(__dirname,'./client/client.js'),
-        //'vendor'    : vendorArray,
     },
     output: {
         path: path.join(__dirname, 'public'),
@@ -71,15 +68,6 @@ module.exports = {
                 NODE_ENV: JSON.stringify('production')
             }
         }),
-        // new webpack.optimize.CommonsChunkPlugin({
-        //     name:['vendor'],
-        //     minChunks: Infinity,
-        //     filename:'[name].[chunkhash:8].js'
-        // }),
-        // new webpack.DllReferencePlugin({
-        //     context: __dirname,
-        //     manifest: require('./dist/manifest.json') // 用来引入 DllPlugin 输出的 manifest.json 文件。
-        // }),
         new webpack.optimize.UglifyJsPlugin({
             compress:{
                 warnings:false

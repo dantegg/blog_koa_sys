@@ -18,6 +18,28 @@ this is a blog system based on koa2+react isomorphic server render+redux(react-r
 
     run `node app.production.js`
 
+### client compression
+
+using CDN instead of bundle
+
+webpackconfig
+```
+externals: {
+        'react': 'React',
+        'react-dom': 'ReactDOM',
+        'redux': 'Redux',
+        'react-redux': 'ReactRedux'
+    },
+```
+
+html
+```
+<script src="http://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+<script src="http://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+<script src="http://cdn.bootcss.com/redux/3.6.0/redux.min.js"></script>
+<script src="http://cdn.bootcss.com/react-redux/5.0.2/react-redux.min.js"></script>
+<script src="http://cdn.bootcss.com/highlight.js/9.9.0/highlight.min.js"></script>
+```
 
 ### Something Important  
 
@@ -32,3 +54,4 @@ this is a blog system based on koa2+react isomorphic server render+redux(react-r
  * ~~add session max age~~  
  * ~~add blog tag~~
  * MD5 PASSWORD
+ * add fitness module

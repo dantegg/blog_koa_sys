@@ -22,7 +22,7 @@ this is a blog system based on koa2+react isomorphic server render+redux(react-r
 
 using CDN instead of bundle
 
-webpackconfig
+ * webpackconfig
 ```
 externals: {
         'react': 'React',
@@ -32,7 +32,7 @@ externals: {
     },
 ```
 
-html
+ * html
 ```
 <script src="http://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
 <script src="http://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>

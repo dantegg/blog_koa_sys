@@ -66,7 +66,7 @@ export default class Test extends Component{
                             <div>
                             <div style={{float:'left',fontSize:'1.5rem',width:'20%'}}>
                                 <div>
-                                    <img src="/upload/avatar.jpg" style={{width:'80%',marginLeft:'10%'}} />
+                                    <img src="/upload/avatar.jpg" style={{width:'80%',marginLeft:'10%',border:'1px solid #dedede',boxShadow:'0px 5px 5px #dedede'}} />
                                 </div>
                                 <div style={{marginLeft:'10%'}}>
                                     <Icon type="github" style={{cursor:'pointer'}} onClick={function () {

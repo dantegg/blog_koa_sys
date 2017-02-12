@@ -67,7 +67,7 @@ class Manage extends Component{
         if (info.file.status === 'done') {
             console.log('info',info)
             this.setState({
-                imageUrl:info.file.response.avatar+'?'+new Date()
+                imageUrl:info.file.response.avatar+'?t='+new Date()
             })
             // Get this url from response in real world.
             //getBase64(info.file.originFileObj, imageUrl => this.setState({ imageUrl }));

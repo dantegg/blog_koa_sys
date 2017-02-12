@@ -27,8 +27,9 @@ this is a blog system based on koa2+react isomorphic server render+redux(react-r
 
 ### TODO
 
- * ~~add user initialization~~
+ * add user initialization  :heavy_check_mark:
+ * add portrait upload
  * add gallery module  
- * ~~add session max age~~  
- * ~~add blog tag~~
+ * add session max age :heavy_check_mark:  
+ * add blog tag :heavy_check_mark:  
  * MD5 PASSWORD

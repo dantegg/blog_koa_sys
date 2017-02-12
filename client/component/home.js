@@ -64,10 +64,15 @@ export default class Test extends Component{
                                 </div>
                             </div>:
                             <div>
-                            <div style={{float:'left',fontSize:'1.5rem',padding:'50px'}}>
-                                <Icon type="github" style={{cursor:'pointer'}} onClick={function () {
-                                    window.open('https://github.com/dantegg')
-                                }}/>
+                            <div style={{float:'left',fontSize:'1.5rem',width:'20%'}}>
+                                <div>
+                                    <img src="/upload/avatar.jpg" style={{width:'80%',marginLeft:'10%'}} />
+                                </div>
+                                <div style={{marginLeft:'10%'}}>
+                                    <Icon type="github" style={{cursor:'pointer'}} onClick={function () {
+                                        window.open('https://github.com/dantegg')
+                                    }}/>
+                                </div>
                             </div>
                             <div key="5" className="home-news">
                                 {this.props.welcomeInfo.map(x=>{

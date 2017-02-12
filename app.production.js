@@ -76,6 +76,7 @@ app.use(async (ctx,next)=>{
 app.use(bodyparser())
 app.use(json())
 app.use(mount('/static',require('koa-static')(__dirname+'/public')))
+app.use(mount('/upload', require('koa-static')(__dirname + '/upload')))
 
 app.use(views(__dirname+'/views/prod',{map: {html: 'ejs'}}))
 app.use(convert(session(SESSION_CONFIG,app)))

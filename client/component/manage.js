@@ -3,22 +3,36 @@
  */
 import React,{Component} from 'react'
 import Head from './head'
-import {Button,Table} from 'antd'
+import {Button,Table,Upload,Icon} from 'antd'
 //import {browserHistory} from 'react-router'
 import '../css/manage.css'
 //import {FETCH_POST} from '../util/fetchConfig'
+
+function beforeUpload(file) {
+    const isJPG = file.type === 'image/jpeg';
+    if (!isJPG) {
+        message.error('You can only upload JPG file!');
+    }
+    const isLt2M = file.size / 1024 / 1024 < 2;
+    if (!isLt2M) {
+        message.error('Image must smaller than 2MB!');
+    }
+    return isJPG && isLt2M;
+}
 
 class Manage extends Component{
     constructor(props){
         super(props)
         this.state={
-            currenPage:1
+            currenPage:1,
+            imageUrl:'/upload/avatar.jpg'
         }
     }
 
+
+
     componentWillReceiveProps(nextProps){
-        //console.log('next',nextProps)
-        //console.log('now',this.state)
+
     }
 
 
@@ -48,31 +62,38 @@ class Manage extends Component{
         })
         //this.props.deleteBlog(id)
     }
+
+    handleChange(info){
+        if (info.file.status === 'done') {
+            console.log('info',info)
+            this.setState({
+                imageUrl:info.file.response.avatar+'?'+new Date()
+            })
+            // Get this url from response in real world.
+            //getBase64(info.file.originFileObj, imageUrl => this.setState({ imageUrl }));
+        }
+    }
+
     render(){
         // console.log('table',this.props)
-
+        const imageUrl = this.state.imageUrl;
         const pagination = {
             total:this.props.blogCount,
             pageSize:10,
             onChange:this.pageChange.bind(this)
         }
-        //console.log('page',pagination)
+
         const columns = [{
             title: '标题',
             dataIndex: 'title',
             render: (text,col)=> {
-                //console.log(col.id)
                 let blogUrl = '/blog/'+col.id
-                //let timestep = new Date()
                 return<a href={blogUrl}>{text}</a>
             },
         }, {
             title: '日期',
             dataIndex: 'createTime',
             render: (text,col)=>{
-                // let newdate = new Date()
-                // newdate.setTime(text)
-                // let time = newdate.toLocaleString()
                 return<div>{text}</div>
             }
         }, {
@@ -83,6 +104,23 @@ class Manage extends Component{
         return(
             <div>
                 <Head/>
+                <div>
+                    <h3>上传头像(upload portrait)</h3>
+                        <Upload
+                            className="avatar-uploader"
+                            name="file"
+                            showUploadList={false}
+                            action="/api/uploadAvatar"
+                            beforeUpload={beforeUpload}
+                            onChange={(info)=>this.handleChange(info)}
+                        >
+                            {
+                                imageUrl ?
+                                    <img src={imageUrl} alt="" className="avatar" /> :
+                                    <Icon type="plus" className="avatar-uploader-trigger" />
+                            }
+                        </Upload>
+                </div>
                 <div className="go-user">
                     <Button type='ghost' icon="user" shape="circle" onClick={this.go2user.bind(this)}/>
                 </div>

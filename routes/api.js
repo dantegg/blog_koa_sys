@@ -5,6 +5,9 @@ const models = require('../models')
 const services = require('../services')
 const router = require('koa-router')()
 const path = require('path')
+const multiparty = require('multiparty')
+const fs = require('fs')
+const joinPath = require('path').join
 router.prefix('/api')
 
 router.post('/login',async(ctx)=>{
@@ -105,6 +108,44 @@ router.post('/createTag',async(ctx)=>{
         }
     }
 
+})
+
+const uploadDir = joinPath(__dirname,'../upload')
+
+const parseMultipart = (req, opts) => new Promise((resolve, reject) => {
+    const form = new multiparty.Form(opts)
+    form.parse(req, (err, fields, files) => {
+        if (err) {
+            reject(err)
+        } else {
+            resolve(files)
+        }
+    })
+})
+
+//上传头像 upload avatar
+router.post('/uploadAvatar',async (ctx)=>{
+
+    if(!ctx.session.userId) {
+        ctx.body={
+            success:false
+        }
+        return
+    }
+    //console.log(ctx.session.userId)
+    const files = await parseMultipart(ctx.req, {
+        uploadDir: uploadDir
+    })
+    //console.log('files',files.file[0])
+    var newPath = files.file[0].path.replace(uploadDir, '')
+    //fs.unlinkSync(uploadDir+'/avatar.jpg')
+    fs.rename(files.file[0].path,uploadDir+'/avatar.jpg')
+    //console.log('newpath',newPath)
+    var url = 'http://localhost:3000/upload/avatar.jpg'
+    //console.log('new path',url)
+    ctx.body = {
+        avatar: url
+    }
 })
 
 router.post('/findBlogByPage',async(ctx)=>{

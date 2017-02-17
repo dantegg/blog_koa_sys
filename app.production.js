@@ -39,8 +39,6 @@ app.use(compress({
 }))
 const session = require('koa-session')
 
-//const middleware = require('./middlewares')
-
 const views = require('koa-views')
 const convert = require('koa-convert')
 const mount = require('koa-mount')
@@ -61,9 +59,9 @@ app.keys=['blog20170101']
 app.env='development'
 app.use(logger())
 const router = require('./routes')
-app.on('error', function (err, ctx) {
-    console.log('error occured:', err.stack)
-})
+// app.on('error', function (err, ctx) {
+//     console.log('error occured:', err.stack)
+// })
 // app.use(async (ctx,next)=>{
 //     const start = new Date()
 //     await next()
@@ -71,16 +69,18 @@ app.on('error', function (err, ctx) {
 //     console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
 // })
 
-
+app.use(views(__dirname+'/views/prod',{map: {html: 'ejs'}}))
 
 app.use(bodyparser())
 app.use(json())
+
+app.use(router)
 app.use(mount('/static',require('koa-static')(__dirname+'/public')))
 app.use(mount('/upload', require('koa-static')(__dirname + '/upload')))
 
-app.use(views(__dirname+'/views/prod',{map: {html: 'ejs'}}))
+
 app.use(convert(session(SESSION_CONFIG,app)))
-app.use(router)
+
 
 app.on('error',function (err,ctx) {
     console.log(err)
@@ -88,8 +88,8 @@ app.on('error',function (err,ctx) {
 })
 
 
-app.listen(80,function () {
-    console.log('app started,http://localhost:80,ctrl-c to terminate')
+app.listen(3000,function () {
+    console.log('app started,http://localhost:3000,ctrl-c to terminate')
 
 })
 

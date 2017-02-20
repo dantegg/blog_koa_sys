@@ -46,6 +46,7 @@
     background:#fff;
     cursor: pointer;
     position:relative;
+    overflow: hidden;
 }
 
 

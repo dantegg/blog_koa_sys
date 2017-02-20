@@ -75,7 +75,7 @@ app.use(mount('/upload', require('koa-static')(__dirname + '/upload')))
 
 
 
-app.listen(3000,function () {
+app.listen(80,function () {
     console.log('app started,http://localhost:80,ctrl-c to terminate')
 
 })

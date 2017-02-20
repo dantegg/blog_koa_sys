@@ -28,6 +28,7 @@ export default class Space extends Component{
         if(!this.props.isLogin){
             browserHistory.push('/')
         }
+        //console.log('???',this.props.isLogin)
         this.props.getAllTags()
     }
 

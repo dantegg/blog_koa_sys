@@ -41,6 +41,7 @@ router.post('/login',async(ctx)=>{
 })
 
 router.get('/logout',async(ctx)=>{
+    //console.log('??logout')
     ctx.session = null
     ctx.body={
         "success":true,

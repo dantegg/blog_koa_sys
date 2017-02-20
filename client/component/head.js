@@ -42,9 +42,8 @@ export default class Head extends Component{
         let fetchData = FETCH_GET
 
         fetch('/api/logout',fetchData).then(res=>{
-            console.log(res)
             if(res.ok){
-                res.json().then(function (result) {
+                res.json().then((result)=> {
                     if(result.success){
                         window.location.href='/'
                     }
